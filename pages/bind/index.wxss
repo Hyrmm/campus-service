@@ -1,0 +1,7 @@
+/* pages/bind/index.wxss */
+.container-info {
+  background-color: #f7f8fa;
+  height: 100vh;
+  width: 100%;
+  padding-top: 300rpx;
+}

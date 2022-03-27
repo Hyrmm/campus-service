@@ -1,0 +1,69 @@
+<van-nav-bar title="在校认证" left-text="返回" left-arrow bind:click-left="navBack" />
+<block wx:if="{{is_login}}">
+  <block wx:if="{{account_status==1105}}">
+    <!-- 未认证,提交认证表单-->
+    <view style="background-color:#f7f8fa; position: absolute; width: 100%;height: 100vh;">
+      <view class="container" style="margin-top: 50px;">
+        <van-cell-group>
+          <van-field value="{{ stdName }}" label="姓名" placeholder="请输入姓名" size="large" bind:input="get_input_value" bind:change="get_input_value" bind:confirm="get_input_value" id="stdName" />
+          <van-field value="{{ stdId }}" label="学号" type="number" placeholder="请输入学号" bind:click-icon="onClickIcon" size="large" bind:input="get_input_value" bind:change="get_input_value" bind:confirm="get_input_value" id="stdId" />
+          <van-field value="{{ phone }}" label="手机号" placeholder="请输入手机号" size="large" bind:input="get_input_value" bind:change="get_input_value" bind:confirm="get_input_value" id="phone" />
+          <!-- 短信验证暂且不用 -->
+          <!-- <van-field value="{{ phonecode }}" center clearable label="短信验证码" placeholder="请输入短信验证码" border="{{ false }}" use-button-slot>
+        <van-button slot="button" size="small" type="primary" custom-style="width:200rpx">
+          发送验证码
+        </van-button>
+      </van-field> -->
+        </van-cell-group>
+        <van-cell title="学院/专业" bind:click="college_popup_open" label="{{college}}/{{major}}" is-link="{{true}}" size="large" />
+      </view>
+      <view style="width: 70%; margin: 50px auto;">
+        <van-button square type="primary" disabled="{{login_button.disabled}}" loading="{{login_button.loading}}" loading-text="加载中..." bind:click="login_button_click" custom-style="border-radius:4px; width:100%;">提交认证</van-button>
+      </view>
+    </view>
+  </block>
+  <block wx:elif="{{account_status==1101}}">
+    <!-- 审核弹窗 -->
+    <van-dialog show="{{true}}" title="通知" message="你的认证处于审核状态,请耐心等待管理员审核完成" bind:confirm="navBack" theme="round-button" />
+  </block>
+  <block wx:elif="{{account_status==1103}}">
+    <!-- 封禁弹窗 -->
+    <van-dialog show="{{true}}" title="通知" message="你的账户处于封禁状态，请联系管理员处理" bind:confirm="navBack" theme="round-button" />
+  </block>
+  <block wx:elif="{{account_status==1104}}">
+    <!-- 审核拒绝弹窗 -->
+    <van-dialog show="{{true}}" title="通知" message="你的认证审核被拒绝，请联系管理员处理" bind:confirm="navBack" theme="round-button" />
+  </block>
+  <block wx:else="">
+    <!-- 认证通过,显示基本信息 -->
+    <view class="container-info">
+      <view class="self-info">
+        <van-cell-group inset>
+          <van-cell title="姓名" value="{{stdName}}" size="large" />
+          <van-cell title="昵称" value="{{nickName}}" size="large" />
+          <van-cell title="性别" value="{{gender}}" size="large" />
+          <van-cell title="学号" value="{{stdId}}" size="large" />
+          <van-cell title="手机" value="{{phone}}" size="large" />
+        </van-cell-group>
+      </view>
+      <view class="major-info" style="margin-top: 30rpx;">
+        <van-cell-group inset style="margin-top: 100px;">
+          <van-cell title="学院" value="{{college}}" size="large" />
+          <van-cell title="专业" value="{{major}}" size="large" />
+        </van-cell-group>
+      </view>
+
+
+    </view>
+
+  </block>
+</block>
+<block wx:else="">
+  <van-dialog show="{{true}}" title="通知" message="检测到当前未登录,返回点击头像登录" bind:confirm="navBack" theme="round-button" />
+</block>
+<!-- 弹出消息框 -->
+<van-dialog show="{{form_testing_show}}" title="通知" message="{{form_testing_msg}}" bind:confirm="form_testing_confirm" theme="round-button" />
+<!-- 弹出层 -->
+<van-popup show="{{ college_popup_show }}" bind:close="college_popup_close" position="bottom" round>
+  <van-picker columns="{{ college_columns }}" show-toolbar title="选择学院" bind:cancel="college_popup_close" bind:confirm="college_confirm" bind:change="onChange" />
+</van-popup>

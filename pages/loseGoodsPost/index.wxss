@@ -1,0 +1,77 @@
+/* pages/loseGoodsPost/index.wxss */
+/* 通用样式 */
+page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #f6f6f6;
+}
+
+.container {
+  width: 92%;
+  margin: 30rpx auto;
+  background: #f6f6f6;
+}
+
+.button {
+  display: inline-block;
+  margin-left: 35rpx;
+  font-size: larger;
+
+}
+
+.underline {
+  width: 80%;
+  height: 10rpx;
+  background-color: #ffd23c;
+  margin: 0 auto;
+}
+
+/* 具体样式 */
+.cell_container {
+  width: 100%;
+  border-radius: 35rpx;
+  background-color: #ffffff;
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+/* 标题输入框 */
+.cell {
+  width: 85%;
+  margin: 15rpx auto;
+}
+
+
+.type {
+  max-height: 285rpx;
+  overflow: auto;
+}
+
+.type view {
+  display: inline-block;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+}
+
+.location_form {
+  margin-top: 30rpx;
+}
+
+.location_tabs view {
+  display: inline-block;
+  margin-right: 30rpx;
+  margin-top: 5rpx;
+}
+
+/* 上床文件 */
+.upload {
+  width: 100%;
+}
+
+/* 上传图片预览图组件样式覆盖*/
+.van-uploader__upload {
+  border-radius: 25rpx;
+}

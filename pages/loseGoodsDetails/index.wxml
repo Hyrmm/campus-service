@@ -1,0 +1,116 @@
+<!--pages/loseGoodsDetails/index.wxml-->
+<van-nav-bar id="nav" title="发布详情" border="{{false}}" left-text="返回" left-arrow bind:click-left="navBack" fixed="{{true}}" z-index="{{2}}" placeholder="{{true}}" />
+<view class="container">
+  <view class="cell">
+    <view class="warper">
+      <view class="title_time">
+        <view class="title">{{goodsType}}</view>
+        <view class="time">{{create_time}}</view>
+      </view>
+      <view class="address">
+        <van-icon name="location-o" />{{address}}
+      </view>
+      <view class="image">
+        <swiper indicator-dots='true' autoplay='true' interval='3000' duration='1000' circular='true' class="swip">
+          <block wx:for="{{movies}}" wx:for-index="index">
+            <swiper-item>
+              <image style="width: 100%;height:150px" src='{{movies[index].url}}' mode="scaleToFill"></image>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="details">{{goodsDetail}}</view>
+      <view class="status">
+        <view>待认领</view>
+      </view>
+    </view>
+  </view>
+  <view class="cell" style="padding-top: 15rpx; padding-bottom: 15rpx;">
+    <view class="warper">
+      <view class="user_info_card">
+        <view class="avatar" style="margin-top: 10rpx;">
+          <image style="width: 70rpx;height: 70rpx; border-radius: 35rpx;" src="{{lostFoundMain.avatar}}"></image>
+        </view>
+        <view class="name_group">
+          <view class="name">{{lostFoundMain.nickname}}</view>
+          <view class="group">发布者</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="cell">
+    <!-- <view class="comment_post">
+      <view class="avatar">
+        <image style="width: 80rpx;height: 80rpx; border-radius: 40rpx;" src="{{avatar}}"></image>
+      </view>
+      <view class="input">
+        <input placeholder="留个言凑凑热闹呗" type=""adjust-position="{{false}}" />
+      </view>
+    </view> -->
+    <view class="comments">
+      <view wx:for="{{comments.commentList}}" class="comment">
+        <view class="avatar">
+          <image style="width: 80rpx;height: 80rpx; border-radius: 40rpx;" src="{{item.oneComment.fromAvatar}}"></image>
+        </view>
+        <view class="nick_content">
+          <view class="nick" style="font-size:20rpx; font-weight: lighter;">{{item.oneComment.fromNickname}}</view>
+          <view class="content" style="font-size: 26rpx;">{{item.oneComment.content}}</view>
+          <view><text style="font-size: 20rpx;font-weight:lighter;color: #000000;" bindtap="secondComments_tap" data-index="{{index}}">{{item.oneComment.createTime}} 回复</text></view>
+          <!-- 二级评论,展开与展开框架 -->
+          <block wx:if="{{!item.oneComment.isOpenSecondComment}}">
+            <view wx:if="{{item.twoCommentList.length!=0}}" bindtap="openSecondComment" data-index="{{index}}" style="text-align: left;color: gainsboro; font-size: 22rpx;">展开{{item.twoCommentList.length}}条回复
+              <van-icon name="arrow-down" />
+            </view>
+          </block>
+          <block wx:else="">
+            <view class="second_comments">
+              <view class="second_comment" wx:for="{{item.twoCommentList}}">
+                <view class="avatar">
+                  <image style="width: 60rpx;height: 60rpx; border-radius: 30rpx;" src="{{item.fromAvatar}}"></image>
+                </view>
+                <view class="nick_content">
+                  <view class="nick" style="font-size:18rpx; font-weight: lighter;">{{item.fromNickname}}</view>
+                  <view class="content" style="font-size: 22rpx;">{{item.content}}</view>
+                  <view><text style="font-size: 18rpx;font-weight:lighter;color: #000000;">{{item.createTime}}</text></view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view wx:if="{{comments.hasNext}}" bindtap="nextCommentPage" style="text-align: center;color: gainsboro; font-size: 30rpx;">
+        查看更多
+        <van-icon name="arrow-down" />
+      </view>
+      <view wx:if="{{!comments.firstHasData}}" style="text-align: center;font-size:26rpx;color: gainsboro; padding: 20rpx;">暂无留言,来抢沙发-。-</view>
+    </view>
+  </view>
+  <view style="height: 300rpx;"></view>
+</view>
+
+<view class='col'>
+  <view class='block icon-cell'>
+    <view class="icon-cell-item">
+      <van-icon name="share-o" size="40rpx" class="icon" />
+      <view class="title">分享</view>
+    </view>
+    <view class="icon-cell-item">
+      <van-icon name="warning-o" size="40rpx" class="icon" />
+      <view class="title">举报</view>
+    </view>
+    <view class="icon-cell-item" bindtap="comments_tap">
+      <van-icon name="more-o" size="40rpx" class="icon" />
+      <view class="title">留言</view>
+    </view>
+  </view>
+  <view class='block contact-cell'>
+    <van-button size="large" color="linear-gradient(0deg, #08AEEA 0%, #2AF598 100%)" type=" primary" round custom-style="corlor:#000000;height:80rpx;width:280rpx">联系我</van-button>
+  </view>
+</view>
+
+<!-- 隐藏input -->
+<view wx:if="{{input_display}}" style="position: fixed;bottom: {{bottom}}px;width: 100%;background-color: #ffffff;padding-top: 30rpx;padding-bottom:30rpx;">
+  <view class="hidden_input" style="width: 90%;margin:0 auto;">
+    <input value="{{input_value}}" focus="{{input_foucs}}" bindconfirm="input_confirm" bindinput="input_getValue" bindfocus="input_getFoucs" bindblur="input_lostFoucs" bindkeyboardheightchange="boardheightchange" adjust-position="{{false}}" type="text" style="padding: 0 40rpx;height: 70rpx;line-height: 60rpx;border-radius: 20rpx; background-color: #f6f6f6;" placeholder="有爱评论,说点好听的~" />
+  </view>
+</view> 

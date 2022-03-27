@@ -1,15 +1,59 @@
-<!--index.wxml-->
-<van-nav-bar title="校园单单" />
-<van-search value="{{ value }}" placeholder="请输入搜索关键词" shape="round" />
-<van-image width="100%" height="250" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/indexBg.jpg" fit="cover center" />
-<van-grid column-num="3" border="{{false}}" type="primary">
-  <van-grid-item icon="photo-o" text="文字" wx:for="{{ 3 }}" />
-</van-grid>
+<!-- index.wxml -->
+<van-nav-bar title="校园云服务" />
+<view class="headBg">
+  <view class="title">
+    <!-- 标题轮播图等 custom-style-->
+    <swiper indicator-dots='true' autoplay='true' interval='3000' duration='1000' circular='true' class="swip">
+      <block wx:for="{{movies}}" wx:key="*this">
+        <swiper-item>
+          <image src='{{item.url}}' mode='widthFix'></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>
+<!-- 定位开始 -->
+<view class="local">
+  <view class="img_xy">
+    <image src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/icon/xy.png"></image>
+  </view>
+  <view class="select-content">
+    <text>{{local_default}}</text>
+  </view>
+  <view class="img_change" bindtap="local_change">
+    <image src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/icon/change.png"></image>
+  </view>
+</view>
 
+<!-- 定位结束 -->
+<view style="width: 100%;margin:5rpx auto;">
+  <van-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+</view>
+<van-grid column-num="2" border="{{false}}" type="primary">
+  <van-grid-item use-slot url="/pages/loseGoodsDetails/index">
+    <image style="width: 100%; height: 90px;" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/secondHand.png" />
+  </van-grid-item>
+  <van-grid-item use-slot url="/pages/loseGoods/index">
+    <image style="width: 100%; height: 90px;" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/loseGoods.png" />
+  </van-grid-item>
+</van-grid>
+<van-tabs active="1" bind:change="onChange" color="#ffd23c" line-width="65">
+  <van-tab title="最新动态"></van-tab>
+  <van-tab title="失物招领"></van-tab>
+  <van-tab title="二手市场"></van-tab>
+</van-tabs>
+
+
+<!-- 切换定位弹出 -->
+<van-dialog width="670rpx" title="选择学校" use-slot show="{{ local_change_show }}" show-cancel-button bind:confirm="local_school_confirm">
+  <van-picker columns="{{ local_school }}" bind:change="local_school_onChange" />
+</van-dialog>
+<!-- 授权登录消息框 -->
+<van-dialog show="{{getUserProfile_dialog_show}}" title="微信登录" message="检测到当前未登录,为了提供服务,申请微信一键登录" bind:confirm="getUserProfile" theme="round-button" />
 <!-- 底部tarbar -->
-<van-tabbar active="{{ active }}" bind:change="tab_bar_change" active-color="#07c160" inactive-color="#000" safe-area-inset-bottom="false">
-  <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-  <van-tabbar-item icon="search" dot>标签</van-tabbar-item>
-  <van-tabbar-item icon="friends-o" info="5">标签</van-tabbar-item>
-  <van-tabbar-item icon="setting-o" info="20">标签</van-tabbar-item>
+<van-tabbar active="{{ tab_bar_index }}" bind:change="tab_bar_change" active-color="#ffd23c" inactive-color="#000">
+  <van-tabbar-item icon="wap-home-o">首页</van-tabbar-item>
+  <van-tabbar-item icon="search" dot>暂定</van-tabbar-item>
+  <van-tabbar-item icon="chat-o" info="5">消息</van-tabbar-item>
+  <van-tabbar-item icon="manager-o">我的</van-tabbar-item>
 </van-tabbar>

@@ -1,0 +1,213 @@
+/* 通用 */
+.container {
+  width: 92%;
+  margin: 30rpx auto;
+}
+
+.cell {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 30rpx;
+  padding-top: 50rpx;
+  padding-bottom: 30rpx;
+  margin-bottom: 40rpx;
+
+}
+
+.warper {
+  width: 85%;
+  margin: 0 auto;
+}
+
+/* cell1 */
+.title_time {
+  display: flex;
+  justify-content: space-between;
+  line-height: 45rpx;
+}
+
+.title_time .title {
+  font-size: 45rpx;
+  font-weight: bolder;
+
+}
+
+.title_time .time {
+  color: #9EA0A1;
+  font-size: 25rpx;
+}
+
+
+.address {
+  font-size: 25rpx;
+  margin-top: 25rpx;
+  color: #9EA0A1;
+}
+
+
+
+.image {
+  margin-top: 30rpx;
+  border-radius: 30rpx;
+  overflow: hidden;
+  border: 4px solid #f6f6f6;
+}
+
+.image .swip image {
+  width: 100%;
+}
+
+.details {
+  font-size: 25rpx;
+  font-weight: lighter;
+  line-height: 37.5rpx;
+  margin-top: 30rpx;
+}
+
+.status {
+  text-align: right;
+  overflow: hidden;
+}
+
+.status view {
+  float: right;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background-color: #ffd23c;
+  border-radius: 12rpx;
+  font-size: 25rpx;
+  font-weight: bolder;
+
+}
+
+/* cell2 */
+.user_info_card {
+  display: flex;
+}
+
+.user_info_card .name_group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 30rpx;
+}
+
+.user_info_card .name_group .name {
+  font-size: 24rpx;
+  font-weight: bolder;
+}
+
+.user_info_card .name_group .group {
+  font-size: 20rpx;
+  font-weight: lighter;
+}
+
+
+/* cell3 */
+.comment_post {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment_post .avatar {
+  margin-left: 40rpx;
+}
+
+.comment_post .input,
+.comment_post .input input {
+  width: 500rpx;
+  margin-right: 40rpx;
+  border-radius: 20rpx;
+  background-color: #f6f6f6;
+}
+
+.comment_post .input input {
+  height: 100%;
+  padding-left: 15rpx;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30rpx;
+}
+
+.comment {
+  display: flex;
+  margin-bottom: 40rpx;
+}
+
+.comment .avatar {
+  margin-left: 40rpx;
+}
+
+.comment .nick_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+}
+
+.comment .nick_content view {
+  margin-bottom: 12rpx;
+}
+
+.second_comments .second_comment {
+  display: flex;
+}
+
+.second_comment .avatar {
+  margin-left: 0;
+}
+.second_comment .nick_content{
+  margin-left:15rpx;
+}
+.second_comment .nick_content view {
+  margin-bottom: 8rpx;
+}
+/* 底部固定栏 */
+.col {
+  overflow: hidden;
+  margin-bottom: 0;
+  background: #ffff;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  padding-top: 30rpx;
+  padding-bottom: 60rpx;
+  border-radius: 30rpx;
+}
+
+.col .block {
+  flex: 1;
+}
+
+.col .icon-cell {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+}
+.col .icon-cell .icon-cell-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.col .icon-cell .icon-cell-item .title {
+  font-size: 24rpx;
+}
+
+.col .contact-cell {
+  display: flex;
+  justify-content: space-around;
+}
+
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

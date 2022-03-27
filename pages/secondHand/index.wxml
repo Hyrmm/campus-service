@@ -1,0 +1,11 @@
+<van-nav-bar title="二手市场" left-text="返回" left-arrow bind:click-left="navBack" />
+<!-- 底部tarbar -->
+<van-tabbar bind:change="tab_bar_change" active-color="blue" inactive-color="#000">
+  <van-tabbar-item icon="wap-home-o">首页</van-tabbar-item>
+  <van-tabbar-item icon="search" dot>暂定</van-tabbar-item>
+  <van-tabbar-item style="vertical-align: middle;">
+    <image slot="icon" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/tabBarPost.png" mode="aspectFit" style="width: 50px; height: 50px; position: relative; top:6px;" />
+  </van-tabbar-item>
+  <van-tabbar-item icon="chat-o" info="5">消息</van-tabbar-item>
+  <van-tabbar-item icon="manager-o">我的</van-tabbar-item>
+</van-tabbar>

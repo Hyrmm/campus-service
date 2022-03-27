@@ -1,61 +1,138 @@
-// index.js
 // 获取应用实例
 const app = getApp()
+var temp_local_scool_value
 Page({
   data: {
-    //搜索框的值
-    value:"",
-    //tab-bar当前选中索引
-    active:0
+    tab_bar_index: 0,
+    local_change_show: false,
+    movies: app.globalData.movies,
+    local_school: app.globalData.local_school,
+    local_default: app.globalData.local_school[0],
+    getUserProfile_dialog_show: false
+  },
+  // 定位切换,弹出切换窗口
+  local_change() {
+    this.setData({
+      local_change_show: true
+    })
+    // 防止不调用local_school_onChange事件,初始化temp_local_scool_value的值
+    temp_local_scool_value = app.globalData.local_school[0]
+  },
+  // 定位切换监听
+  local_school_onChange(event) {
+    temp_local_scool_value = event.detail.value
+    temp_local_scool_index = event.detail.index
+  },
+  // 定位切换确认
+  local_school_confirm() {
+    if (temp_local_scool_value) {
+      this.setData({
+        local_default: temp_local_scool_value
+      })
+    }
+    try {
+      wx.setStorageSync('local_school', this.data.local_default)
+    } catch (e) {}
+    // 初始化微信登录
+    if (!app.globalData.userInfo.hasUserInfo) {
+      // 没有缓存登录,弹框提示登录
+      this.setData({
+        getUserProfile_dialog_show: true
+      })
+    }
 
   },
-  tab_bar_change(event){
-    console.log(app.tab_bar_url_list[event.detail])
+  // tabBar切换
+  tab_bar_change(event) {
+    switch (event.detail) {
+      case 0:
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+        break;
+      case 2:
+        wx.switchTab({
+          url: '/pages/msg/index',
+        })
+        break;
+      case 3:
+        wx.switchTab({
+          url: '/pages/self/index',
+        })
+        break;
+      default:
+        break;
+    }
   },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
+  // 微信授权登录
+  getUserProfile(e) {
+    if (!this.data.hasUserInfo) {
+      wx.getUserProfile({
+        desc: '用于完善用户资料',
+        success: (res) => {
+          //同步下全局数据
+          app.globalData.userInfo.hasUserInfo = true
+          app.globalData.userInfo.gender = String(res.userInfo.gender)
+          app.globalData.userInfo.avatarUrl = res.userInfo.avatarUrl
+          app.globalData.userInfo.nickName = res.userInfo.nickName
+          //缓存下用户数据,方便反复弹框
+          try {
+            wx.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
+            wx.setStorageSync('nickName', res.userInfo.nickName)
+            wx.setStorageSync('gender', String(res.userInfo.gender))
+          } catch (e) {}
+
+        }
       })
     }
   },
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
+  onLoad() {
+    // 初始化定位学校
+    try {
+      var local_school = wx.getStorageSync('local_school')
+      if (!local_school) {
+        // 缓存里没有定位数据,弹出定位选择
         this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+          local_change_show: true
         })
+      } else {
+        // 缓存里有历史定位数据,直接拿缓存默认数据
+        this.setData({
+          local_default: local_school
+        })
+        // 初始化微信登录
+        if (!app.globalData.userInfo.hasUserInfo) {
+          // 没有缓存登录,弹框提示登录
+          this.setData({
+            getUserProfile_dialog_show: true
+          })
+        }
       }
-    })
+    } catch (e) {}
+
+
   },
-  getUserInfo() {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+  onReady() {
+
   },
+
+
+
+
+
+
+
+
   //用户下拉刷新行为
-  onPullDownRefresh(e){
+  onPullDownRefresh(e) {
     console.log(e)
   },
   //用户上拉触底行为
-  onReachBottom(){
+  onReachBottom() {
     console.log(1)
   },
   //用户滑动页面行为
-  onPageScroll(event){
+  onPageScroll(event) {
     console.log(event)
   }
 })

@@ -1,0 +1,63 @@
+<van-nav-bar title="失物招领发布" border="{{false}}" left-text="返回" left-arrow bind:click-left="navBack" fixed="{{true}}" z-index="{{2}}" placeholder="{{true}}" />
+<view class="container">
+  <view class=" button" bindtap="tabs1_change" style="{{tabs1===true? 'font-weight: bolder;' :'' }}">
+    捡到东西
+    <view class="{{tabs1===true? 'underline' :'' }} "></view>
+  </view>
+  <view class="button" bindtap="tabs2_change" style="{{tabs2===true? 'font-weight: bolder;' :'' }}">
+    丢了东西
+    <view class="{{tabs2===true? 'underline' :'' }} "></view>
+  </view>
+  <view class="cell_container">
+    <view class="cell title">
+      <van-cell-group border="{{false}}">
+        <van-field value="{{ post_title }}" placeholder="物品标题(选取下方可选向)" border="{{ false }}" bind:change="onChange" custom-style="background-color:#f6f6f6;  border-radius: 30rpx;border:0;color:#000000;" readonly="{{true}}" id="title" />
+      </van-cell-group>
+    </view>
+    <view class="cell type">
+      <view wx:for="{{type_dict}}">
+        <van-tag bindtap="type_tap" round color="{{current_type_index===index? '#ffd23c':'#f6f6f6'}}" size="large" data-index="{{index}}" text-color="#000000">
+          {{item.goodsType}}</van-tag>
+      </view>
+    </view>
+  </view>
+  <view class="cell_container">
+    <view class="cell" bindtap="get_detail_foucs">
+      <van-cell-group border="{{false}}">
+        <van-field value="{{ post_detail }}" placeholder="物品详细描述" border="{{ false }}" bind:change="get_input_value" custom-style="background-color:#f6f6f6;  border-radius: 30rpx;border:0;color:#000000;" show-word-limit="{{true}}" type="textarea" maxlength="{{120}}" autosize="{maxHeight:120,minHeight:100}" center="{{true}}" id="detail" focus="{{detail_foucs}}" />
+      </van-cell-group>
+    </view>
+  </view>
+  <view class="cell_container">
+    <view class="cell">
+      <van-cell-group border="{{false}}">
+        <van-field value="{{ post_phone }}" placeholder="联系方式(方便他人联系你)" border="{{ false }}" bind:change="get_input_value" custom-style="background-color:#f6f6f6;  border-radius: 30rpx;border:0;color:#000000;" id="phone" />
+      </van-cell-group>
+    </view>
+
+    <view class="cell phone_protect">
+      <van-cell title="是否开启手机隐私保护?" custom-class="font-weight:bolder;" border="{{false}}" center="{{true}}" style="padding:0px">
+        <view slot="right-icon">
+          <van-switch checked="{{switchActive }}" active-color="#ffd23c" bindtap="switchHandle" />
+        </view>
+      </van-cell>
+
+    </view>
+    <view class="cell">
+      <van-cell-group border="{{false}}">
+        <van-field value="{{ post_address }}" placeholder="拾取或丢失的地点" border="{{ false }}" bind:change="get_input_value" custom-style="background-color:#f6f6f6;  border-radius: 30rpx;border:0;color:#000000;" id="address" />
+      </van-cell-group>
+    </view>
+  </view>
+  <view class="upload">
+    <van-uploader max-count="3" deletable="{{true}}" image-fit="aspectFill" file-list="{{ fileList }}" bind:after-read="afterRead" preview-size="300rpx" upload-icon="plus" upload-text="上床图片" bind:delete="delete" />
+  </view>
+  <view class="cell_container" style="background-color:#f6f6f6 ;">
+    <view class="cell">
+      <van-button loading="{{post_loading}}" loading-text="发布中" disabled="{{post_disabled}}" bind:click="post_confirm" round="{{true}}" type="danger" block="{{true}}" custom-style="background-color:#ffd23c;border:0;color:#000000;font-weight:border">发布</van-button>
+    </view>
+
+  </view>
+</view>
+<!-- 弹出消息框 -->
+<van-dialog show="{{form_testing_show}}" title="通知" message="{{form_testing_msg}}" bind:confirm="form_testing_confirm" theme="round-button" />
