@@ -323,7 +323,84 @@ function get_comments_data(self, page, mainId) {
   })
 }
 
+function fangdou2(t, e) {
+  let a = null;
+  return function (s) {
+    null != a && clearTimeout(a), a = setTimeout(() => {
+      t.call(this, s);
+    }, e);
+  };
+}
 
+function get_secondHand_data(t, e) {
+  function a(e) {
+    function a(t) {
+      return new Promise(e => {
+        wx.getImageInfo({
+          src: t,
+          success: t => {
+            let a = t.width / t.height;
+            e(.46 * app.globalData.systemInfo.windowWidth / a);
+          }
+        });
+      });
+    }
+    this.data.goods_data[t].data = e, async function () {
+      let o = 0,
+        i = 0;
+      for (let s of e.fleaMarketMain) {
+        if (0 != s.imageUrlList.length) {
+          let t = await a(s.imageUrlList[0]);
+          s.fleaMarketMain.height = t;
+        } else s.fleaMarketMain.height = 0;
+        switch (s.fleaMarketMain.goodsCondition) {
+          case 3321:
+            s.fleaMarketMain.goodsCondition = "全新";
+            break;
+
+          case 3322:
+            s.fleaMarketMain.goodsCondition = "几乎全新";
+            break;
+
+          case 3323:
+            s.fleaMarketMain.goodsCondition = "轻微使用痕迹";
+            break;
+
+          case 3324:
+            s.fleaMarketMain.goodsCondition = "明显使用痕迹";
+            break;
+
+          default:
+            s.fleaMarketMain.goodsCondition = "未知";
+        }
+        o <= i ? (this.data.goods_data[t].left.push(s), o += s.fleaMarketMain.height) : (this.data.goods_data[t].right.push(s),
+          i += s.fleaMarketMain.height);
+      }
+      s.call(this);
+    }.call(this);
+  }
+
+  function s() {
+    this.setData({
+      ["goods_data[" + t + "]"]: this.data.goods_data[t]
+    }), console.log(this.data.goods_data[t]);
+  }
+  this.data.goods_data[t].goodsTag, app.globalData.systemInfo.screenWidth, wx.request({
+    url: app.globalData.url + "/fleamarket/goods/list",
+    data: {
+      token: wx.getStorageSync("token"),
+      size: "3",
+      currentPage: e
+    },
+    success: t => {
+      200 == t.statusCode ? 3333 != t.data.code ? a.call(this, t.data.data) : wx.showToast({
+        title: "暂无数据"
+      }) : wx.showToast({
+        title: "服务器故障"
+      });
+    }
+  });
+}
 
 
 
@@ -336,5 +413,7 @@ module.exports = {
   fangdou: fangdou,
   getStatus: getStatus,
   get_loseOrFind_data: get_loseOrFind_data,
-  get_comments_data: get_comments_data
+  get_comments_data: get_comments_data,
+  fangdou2: fangdou2,
+  get_secondHand_data:get_secondHand_data
 }

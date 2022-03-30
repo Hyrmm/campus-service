@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/secondHand/index",
+    "pages/secondHandPost/index",
     "pages/msg/index",
     "pages/self/index",
     "pages/bind/index",

@@ -30,7 +30,7 @@
   <van-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
 </view>
 <van-grid column-num="2" border="{{false}}" type="primary">
-  <van-grid-item use-slot url="/pages/loseGoodsDetails/index">
+  <van-grid-item use-slot url="/pages/secondHand/index">
     <image style="width: 100%; height: 90px;" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/secondHand.png" />
   </van-grid-item>
   <van-grid-item use-slot url="/pages/loseGoods/index">

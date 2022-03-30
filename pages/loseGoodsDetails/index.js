@@ -2,11 +2,26 @@
 const app = getApp()
 const moudle = require("../../js/comment.js")
 const FormData = require('../../js/formData')
+let e = null;
 Page({
 
   /**
    * 页面的初始数据
    */
+  binddragging(t) {},
+  binddragend(t) {},
+  bindscroll(a) {
+    let n = this;
+    null !== e && clearTimeout(e), e = setTimeout(function () {
+      console.log(a.detail.scrollLeft), a.detail.scrollLeft < .7819565217391304 * app.globalData.systemInfo.screenWidth - 10 ? n.setData({
+        scroll_index: 1
+      }) : a.detail.scrollLeft <= .7819565217391304 * app.globalData.systemInfo.screenWidth * 2 - 10 ? n.setData({
+        scroll_index: 2
+      }) : n.setData({
+        scroll_index: 3
+      });
+    }, 200);
+  },
   navBack() {
     wx.navigateBack({
       delta: 0,
@@ -50,7 +65,7 @@ Page({
   input_confirm(event) {
     let data = this.data.input_which == 1 ? {
       // 一级留言
-      "mainId": this.lostFoundMain.id,
+      "mainId": this.data.lostFoundMain.id,
       "fromStdId": app.globalData.bind_userInfo.stdId,
       "fromNickname": wx.getStorageSync('nickName'),
       "fromAvatar": wx.getStorageSync('avatarUrl'),
@@ -88,7 +103,11 @@ Page({
     input_foucs: false,
     input_display: false,
     input_value: "",
-    bottom: 0
+    bottom: 0,
+    msg_show: !1,
+    img_list: [],
+    scroll_Maxheight: 0,
+    scroll_index: 1
   },
   // 展开二级留言事件
   openSecondComment(event) {
@@ -111,22 +130,42 @@ Page({
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('data', function (data) {
       console.log(data)
+      function o(src) {
+        return new Promise(e => {
+          wx.getImageInfo({
+            src: src,
+            success: a => {
+              console.log(a);
+              let n = .7819565217391304 * app.globalData.systemInfo.screenWidth,
+                o = a.width / n,
+                s = a.height / o;
+              e(s);
+            }
+          });
+        });
+      }
       self.setData({
         address: data.lostFoundMain.address,
         create_time: data.create_time,
         goodsType: data.lostFoundMain.goodsType,
         goodsDetail: data.goodsDetail,
         status: data.status,
-        lostFoundMain: data.lostFoundMain
-      })
-      for (let index in data.imgUrl) {
-        self.data.movies.push({
-          "url": data.imgUrl[index]
-        })
-      }
-      self.setData({
-        movies: self.data.movies
-      })
+        lostFoundMain: data.lostFoundMain,
+      }) 
+      !(async function () {
+        let t = 0;
+        for (let a in data.imgUrl) {
+          let s = await o(data.imgUrl[a]);
+          t = t >= s ? t : s, self.data.img_list.push({
+            url: data.imgUrl[a],
+            height: s
+          });
+        }
+        self.setData({
+          scroll_Maxheight: t,
+          img_list: self.data.img_list
+        });
+      }())
       moudle.get_comments_data(self, 1, self.data.lostFoundMain.id)
     })
 
