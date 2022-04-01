@@ -1,4 +1,11 @@
 // 失物照片发布时间的字符串化
+const app = getApp()
+
+
+
+
+
+
 function getTime(date) {
   //dateTimeStamp是一个时间毫秒，注意时间戳是秒的形式，在这个毫秒的基础上除以1000，就是十位数的时间戳。13位数的都是时间毫秒。
   var dateTimeStamp = Date.parse(date)
@@ -119,16 +126,14 @@ function get_loseOrFind_data(self, loseOrFind_code, page) {
       !(async function () {
         // 时间格式化，状态格式化，高度自动化
         for (let item in current_type.temp_data_list) {
-          // 判断该项图片数据是否为空,为空给予默认高度100
-
-          // 高度自动化
-          if (current_type.temp_data_list[item].imgUrl.length != 0) {
-            // 不为空
-            let res = await get_img_originHeight(current_type.temp_data_list[item].imgUrl[0])
-            current_type.temp_data_list[item].current_img_height = res
-          } else {
-            current_type.temp_data_list[item].current_img_height = 100
+          // 判断该项图片数据是否为空,添加默认图
+          if (current_type.temp_data_list[item].imgUrl.length == 0) {
+            current_type.temp_data_list[item].imgUrl.push("https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/defult_img.jpg")
           }
+          // 高度自动化
+          let res = await get_img_originHeight(current_type.temp_data_list[item].imgUrl[0])
+          current_type.temp_data_list[item].current_img_height = res
+
           // 时间格式化
           current_type.temp_data_list[item].create_time = getTime(current_type.temp_data_list[item].lostFoundMain.createTime)
           // 状态格式化
@@ -234,6 +239,125 @@ function get_loseOrFind_data(self, loseOrFind_code, page) {
 
 }
 
+function get_loseOrFind_data2(loseOrFind_code, page) {
+  // 数据绑定(lose,find)
+  let current_data_type = loseOrFind_code == "3206" ? this.data.loseOrFind_data.lose : this.data.loseOrFind_data.find
+
+  // 处理数据
+  function data_handle(data) {
+    function get_img_originHeight(imgUrl) {
+      return new Promise(resolve => {
+        wx.getImageInfo({
+          src: imgUrl,
+          success: (res) => {
+            let origin_img_ratio = res.width / res.height
+            resolve((app.globalData.systemInfo.windowWidth * 0.413) / origin_img_ratio)
+          }
+        })
+      })
+    }
+    current_data_type.current_page = data.currentPage
+    current_data_type.hasNext = data.hasNext
+      !(async function () {
+        for (let index in data.lostFoundMainImgList) {
+          // 没有图添加默认图
+          if (data.lostFoundMainImgList[index].imgUrl.length == 0) {
+
+            data.lostFoundMainImgList[index].imgUrl.push("https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/defult_img.jpg")
+          }
+          // 高度
+          let res = await get_img_originHeight(data.lostFoundMainImgList[index].imgUrl[0])
+          data.lostFoundMainImgList[index].lostFoundMain.height = res
+          // 时间
+          data.lostFoundMainImgList[index].lostFoundMain.createTime = getTime(data.lostFoundMainImgList[index].lostFoundMain.createTime)
+          // 状态
+          data.lostFoundMainImgList[index].lostFoundMain.status = getStatus(data.lostFoundMainImgList[index].lostFoundMain.status)
+          // 归属
+          if (current_data_type.render_data.left.total_height <= current_data_type.render_data.right.total_height) {
+            // 左push 累计高度
+            current_data_type.render_data.left.data.push(data.lostFoundMainImgList[index])
+            current_data_type.render_data.left.total_height += res
+            // 左渲染
+            data_render.call(this, 0)
+          } else {
+            // 右push 累计高度
+            current_data_type.render_data.right.data.push(data.lostFoundMainImgList[index])
+            current_data_type.render_data.right.total_height += res
+            // 右渲染
+            data_render.call(this, 1)
+
+          }
+
+
+        }
+      }).call(this);
+
+
+
+  }
+
+  // 渲染数据
+  function data_render(code) {
+    switch (loseOrFind_code) {
+      case "3206":
+        switch (code) {
+          case 0:
+            this.setData({
+              ["loseOrFind_data.lose.render_data.left.data"]: this.data.loseOrFind_data.lose.render_data.left.data
+            })
+            break
+          case 1:
+            this.setData({
+              ["loseOrFind_data.lose.render_data.right.data"]: this.data.loseOrFind_data.lose.render_data.right.data
+            })
+            break
+        }
+        break
+      case "3207":
+        switch (code) {
+          case 0:
+            this.setData({
+              ["loseOrFind_data.find.render_data.left.data"]: this.data.loseOrFind_data.find.render_data.left.data
+            })
+            break
+          case 1:
+            this.setData({
+              ["loseOrFind_data.find.render_data.right.data"]: this.data.loseOrFind_data.find.render_data.right.data
+            })
+            break
+        }
+    }
+  }
+  // 请求数据
+  wx.request({
+    url: app.globalData.url + "/lost/found/notice/list",
+    data: {
+      token: wx.getStorageSync('token'),
+      noticeType: loseOrFind_code,
+      page: page
+    },
+    success: (res) => {
+      if (res.statusCode == 200) {
+        if (res.data.code == 200) {
+          data_handle.call(this, res.data.data)
+        } else {
+          wx.showToast({
+            title: '暂无数据',
+            icon: "error"
+          })
+        }
+      } else {
+        wx.showToast({
+          title: '服务器故障',
+          icon: "error"
+        })
+      }
+    }
+  })
+
+}
+
+
 function get_comments_data(self, page, mainId) {
   // 数据处理模块
   function handle_data(data, isHasData, isFirstRequest) {
@@ -323,24 +447,29 @@ function get_comments_data(self, page, mainId) {
   })
 }
 
-function fangdou2(t, e) {
-  let a = null;
-  return function (s) {
-    null != a && clearTimeout(a), a = setTimeout(() => {
-      t.call(this, s);
-    }, e);
+function fangdou2(fn, delay) {
+  let timer = null;
+  return function (event) {
+    if (timer != null) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      fn.call(this, event)
+
+    }, delay)
   };
 }
 
 function get_secondHand_data(t, e) {
+  // 数据处理
   function a(e) {
     function a(t) {
-      return new Promise(e => {
+      return new Promise(resolve => {
         wx.getImageInfo({
           src: t,
           success: t => {
             let a = t.width / t.height;
-            e(.46 * app.globalData.systemInfo.windowWidth / a);
+            resolve(.46 * app.globalData.systemInfo.windowWidth / a);
           }
         });
       });
@@ -348,6 +477,15 @@ function get_secondHand_data(t, e) {
     this.data.goods_data[t].data = e, async function () {
       let o = 0,
         i = 0;
+      // 取得左右当前高度
+      for (let index in this.data.goods_data[t].left) {
+        o += this.data.goods_data[t].left[index].fleaMarketMain.height
+      }
+      for (let index in this.data.goods_data[t].right) {
+        i += this.data.goods_data[t].right[index].fleaMarketMain.height
+
+      }
+
       for (let s of e.fleaMarketMain) {
         if (0 != s.imageUrlList.length) {
           let t = await a(s.imageUrlList[0]);
@@ -373,36 +511,62 @@ function get_secondHand_data(t, e) {
           default:
             s.fleaMarketMain.goodsCondition = "未知";
         }
+        s.fleaMarketMain.createTime=getTime(s.fleaMarketMain.createTime)
         o <= i ? (this.data.goods_data[t].left.push(s), o += s.fleaMarketMain.height) : (this.data.goods_data[t].right.push(s),
           i += s.fleaMarketMain.height);
+        this.setData({
+          ["goods_data[" + t + "]"]: this.data.goods_data[t]
+        }), console.log(this.data.goods_data[t]);
       }
       s.call(this);
     }.call(this);
   }
-
+  // 数据渲染
   function s() {
     this.setData({
       ["goods_data[" + t + "]"]: this.data.goods_data[t]
     }), console.log(this.data.goods_data[t]);
   }
-  this.data.goods_data[t].goodsTag, app.globalData.systemInfo.screenWidth, wx.request({
-    url: app.globalData.url + "/fleamarket/goods/list",
-    data: {
+  // 索引为0,为最新,goodsTag为空
+  let data
+  if (t == 0) {
+    data = {
       token: wx.getStorageSync("token"),
       size: "3",
       currentPage: e
-    },
+    }
+  } else {
+    data = {
+      goodsTag: this.data.goods_data[t].goodsTag,
+      token: wx.getStorageSync("token"),
+      size: "3",
+      currentPage: e
+    }
+  }
+  wx.request({
+    url: app.globalData.url + "/fleamarket/goods/list",
+    data: data,
     success: t => {
       200 == t.statusCode ? 3333 != t.data.code ? a.call(this, t.data.data) : wx.showToast({
-        title: "暂无数据"
+        title: "暂无数据",
+        icon: "error"
       }) : wx.showToast({
-        title: "服务器故障"
+        title: "服务器故障",
+        icon: "error"
       });
     }
   });
 }
 
-
+function secondHandPost_form_limit() {
+  if (this.data.textarea_value == "" && this.data.price_value == 0) {
+    return [false, "存在某些内容为空,请认真填写"]
+  } else if (this.data.goods_detail.type.current_select_index == 0 && this.data.fileList.length == 0) {
+    // 出售时图片不能为空
+    return [false, "发布出售闲置,至少上传一张图片"]
+  }
+  return [true]
+}
 
 
 
@@ -415,5 +579,7 @@ module.exports = {
   get_loseOrFind_data: get_loseOrFind_data,
   get_comments_data: get_comments_data,
   fangdou2: fangdou2,
-  get_secondHand_data:get_secondHand_data
+  get_secondHand_data: get_secondHand_data,
+  secondHandPost_form_limit: secondHandPost_form_limit,
+  get_loseOrFind_data2: get_loseOrFind_data2
 }

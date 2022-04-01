@@ -11,7 +11,6 @@ App({
     },
     // 是否定位
     is_has_local: false,
-
     // 轮播图图片地址
     movies: [{
         url: 'https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/1.png'
@@ -26,7 +25,7 @@ App({
     // 切换定位选项
     local_school: ["南昌师范学院", "清华大学", "北京大学"],
     // 服务器地址
-    url: "http://xyfw.nat300.top",
+    url: "http://hyrm.club:4001",
   },
   onLaunch() {
     // 打开调试
@@ -78,7 +77,7 @@ App({
                     // code:1102=》 认证通过
                     // 绑定下认证信息,保存至全局数据
                     wx.request({
-                      url: app.globalData.url + "/login/student/info/get",
+                      url: self.globalData.url + "/login/student/info/get",
                       data: {
                         token: wx.getStorageSync("token")
                       },
@@ -144,6 +143,6 @@ App({
     var intervalId = setInterval(interval, 250)
     // 获取设备数据
     this.globalData.systemInfo = wx.getSystemInfoSync()
-    console.log(wx.getSystemInfoSync())
   },
+
 })

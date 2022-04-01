@@ -60,37 +60,36 @@
     <van-tab title="丢了东西动态">
       <view class="waterfall_warper lose">
         <view class="left">
-          <view wx:for="{{lose_left}}" class="waterfall_item" bindtap="get_details" data-type="lose_left" data-index="{{index}}">
-            <view class="item_container img" id="text" wx:key="index">
-              <van-image fit="cover" src="{{lose_left[index].imgUrl.length===0? '':lose_left[index].imgUrl[0]}}" height="{{lose_left[index].current_img_height}}" />
+          <view wx:for="{{loseOrFind_data.lose.render_data.left.data}}" class="waterfall_item" bindtap="get_details" data-type="lose_left" data-index="{{index}}">
+            <view class="item_container img" id="text">
+              <van-image fit="cover" src="{{item.imgUrl[0]}}" height="{{item.lostFoundMain.height}}" />
             </view>
             <view class="item_container title_status">
-              <view class="item_title">{{lose_left[index].lostFoundMain.goodsType}}</view>
-              <view class="item_status">{{lose_left[index].status}}</view>
+              <view class="item_title">{{item.lostFoundMain.goodsType}}</view>
+              <view class="item_status">{{item.lostFoundMain.status}}</view>
             </view>
             <view class="item_container location_date">
               <view class="item_location">
-                <van-icon name="location-o" />{{lose_left[index].lostFoundMain.address}}
+                <van-icon name="location-o" />{{item.loseFoundMain.address}}
               </view>
-              <view class="item_date">{{lose_left[index].create_time}}</view>
+              <view class="item_date">{{item.loseFoundMain.createTime}}</view>
             </view>
           </view>
         </view>
         <view class="right">
-          <view wx:for="{{lose_right}}" class="waterfall_item" bindtap="get_details" data-type="lose_right" data-index="{{index}}">
-            <view class="item_container img">
-              <van-image fit="cover" height="{{lose_right[index].current_img_height}}" src="{{lose_right[index].imgUrl.length===0? '':lose_right[index].imgUrl[0]}}" />
+          <view wx:for="{{loseOrFind_data.lose.render_data.right.data}}" class="waterfall_item" bindtap="get_details" data-type="lose_right" data-index="{{index}}">
+            <view class="item_container img" id="text">
+              <van-image fit="cover" src="{{item.imgUrl[0]}}" height="{{item.lostFoundMain.height}}" />
             </view>
             <view class="item_container title_status">
-              <view class="item_title">{{lose_right[index].lostFoundMain.goodsType}}</view>
-              <view class="item_status">{{lose_right[index].status}}</view>
+              <view class="item_title">{{item.lostFoundMain.goodsType}}</view>
+              <view class="item_status">{{item.lostFoundMain.status}}</view>
             </view>
             <view class="item_container location_date">
               <view class="item_location">
-                <van-icon name="location-o" />
-                {{lose_right[index].lostFoundMain.address}}
+                <van-icon name="location-o" />{{item.lostFoundMain.address}}
               </view>
-              <view class="item_date">{{lose_right[index].create_time}}</view>
+              <view class="item_date">{{item.lostFoundMain.createTime}}</view>
             </view>
           </view>
         </view>
@@ -99,38 +98,36 @@
     <van-tab title="捡到东西动态">
       <view class="waterfall_warper find">
         <view class="left">
-          <view wx:for="{{find_left}}" class="waterfall_item" bindtap="get_details" data-type="find_left" data-index="{{index}}">
-            <view class="item_container img" id="text" wx:key="index">
-              <van-image fit="cover" src="{{find_left[index].imgUrl.length===0? '':find_left[index].imgUrl[0]}}" height="{{find_left[index].current_img_height}}" />
+          <view wx:for="{{loseOrFind_data.find.render_data.left.data}}" class="waterfall_item" bindtap="get_details" data-type="find_left" data-index="{{index}}">
+            <view class="item_container img" id="text">
+              <van-image fit="cover" src="{{item.imgUrl[0]}}" height="{{item.lostFoundMain.height}}" />
             </view>
             <view class="item_container title_status">
-              <view class="item_title">{{find_left[index].lostFoundMain.goodsType}}</view>
-              <view class="item_status">{{find_left[index].status}}</view>
+              <view class="item_title">{{item.lostFoundMain.goodsType}}</view>
+              <view class="item_status">{{item.lostFoundMain.status}}</view>
             </view>
             <view class="item_container location_date">
               <view class="item_location">
-                <van-icon name="location-o" />
-                {{find_left[index].lostFoundMain.address}}
+                <van-icon name="location-o" />{{item.loseFoundMain.address}}
               </view>
-              <view class="item_date">{{find_left[index].create_time}}</view>
+              <view class="item_date">{{item.loseFoundMain.createTime}}</view>
             </view>
           </view>
         </view>
         <view class="right">
-          <view wx:for="{{find_right}}" class="waterfall_item" bindtap="get_details" data-type="find_right" data-index="{{index}}">
-            <view class="item_container img">
-              <van-image fit="cover" height="{{find_right[index].current_img_height}}" src="{{find_right[index].imgUrl.length===0? '':find_right[index].imgUrl[0]}}" />
+          <view wx:for="{{loseOrFind_data.find.render_data.right.data}}" class="waterfall_item" bindtap="get_details" data-type="find_right" data-index="{{index}}">
+            <view class="item_container img" id="text">
+              <van-image fit="cover" src="{{item.imgUrl[0]}}" height="{{item.lostFoundMain.height}}" />
             </view>
             <view class="item_container title_status">
-              <view class="item_title">{{find_right[index].lostFoundMain.goodsType}}</view>
-              <view class="item_status">{{lose_right[index].status}}</view>
+              <view class="item_title">{{item.lostFoundMain.goodsType}}</view>
+              <view class="item_status">{{item.lostFoundMain.status}}</view>
             </view>
             <view class="item_container location_date">
               <view class="item_location">
-                <van-icon name="location-o" />
-                {{find_right[index].lostFoundMain.address}}
+                <van-icon name="location-o" />{{item.loseFoundMain.address}}
               </view>
-              <view class="item_date">{{find_right[index].create_time}}</view>
+              <view class="item_date">{{item.loseFoundMain.createTime}}</view>
             </view>
           </view>
         </view>

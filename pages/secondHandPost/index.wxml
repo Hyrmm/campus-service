@@ -4,7 +4,7 @@
 
   <view class="cell">
     <view class="textarea cell-item">
-      <textarea name="" id="" cols="40" placeholder="买家都关心入手渠道、成色、转手原因"></textarea>
+      <textarea value="{{textarea_value}}" bindblur="textarea_blur" name="" id="" cols="40" placeholder="买家都关心入手渠道、成色、转手原因"></textarea>
     </view>
     <view class="upload cell-item">
       <van-uploader max-count="3" deletable="{{true}}" image-fit="aspectFill" file-list="{{ fileList }}" bind:after-read="afterRead" preview-size="300rpx" upload-icon="plus" upload-text="上床图片" bind:delete="delete" />
@@ -52,7 +52,7 @@
   <view class="cell">
     <view class="post_button cell-item">
       <text class="save">存草稿</text>
-      <text class="post" bindtap="post_confirm">发布</text>
+      <text class="post" bindtap="{{is_post_cilcked?'post_confirm':''}}">发布</text>
     </view>
   </view>
 </view>
@@ -60,6 +60,8 @@
 <!-- 隐藏input -->
 <view wx:if="{{input_display}}" style="position: fixed;bottom: {{input_bottom}}px;width: 100%;background-color: #ffffff;padding-top: 30rpx;padding-bottom:30rpx;">
   <view class="hidden_input" style="width: 90%;margin:0 auto;">
-    <input value="{{input_value}}" focus="{{input_foucs}}" bindconfirm="input_confirm" bindinput="input_getValue" bindfocus="input_getFoucs" bindblur="input_lostFoucs" bindkeyboardheightchange="boardheightchange" adjust-position="{{false}}" type="number" style="padding: 0 40rpx;height: 70rpx;line-height: 60rpx;border-radius: 20rpx; background-color: #f6f6f6;" placeholder="卖多少钱合适呢?emm..." />
+    <input value="{{input_value}}" focus="{{input_foucs}}" bindfocus="input_getFoucs" bindblur="input_lostFoucs" bindkeyboardheightchange="boardheightchange" adjust-position="{{false}}" type="number" style="padding: 0 40rpx;height: 70rpx;line-height: 60rpx;border-radius: 20rpx; background-color: #f6f6f6;" placeholder="卖多少钱合适呢?emm..." />
   </view>
 </view>
+<!-- 弹出消息框 -->
+<van-dialog show="{{form_testing_show}}" title="通知" message="{{form_testing_msg}}" bind:confirm="form_testing_confirm" theme="round-button" />

@@ -1,5 +1,5 @@
 // pages/bind/index.js
-const app = getApp()
+var app = getApp()
 var college_major = {}
 Page({
 

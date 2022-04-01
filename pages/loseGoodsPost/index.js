@@ -1,5 +1,5 @@
 // pages/loseGoodsPost/index.js
-const app = getApp()
+var app = getApp()
 const FormData = require('../../js/formData')
 const moudle = require("../../js/comment.js")
 

@@ -9,7 +9,8 @@
     "pages/bind/index",
     "pages/loseGoods/index",
     "pages/loseGoodsPost/index",
-    "pages/loseGoodsDetails/index"
+    "pages/loseGoodsDetails/index",
+    "pages/secondHandDetails/index"
   ],
   "window": {
     "navigationStyle": "custom",

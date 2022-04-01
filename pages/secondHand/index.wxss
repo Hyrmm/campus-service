@@ -10,14 +10,16 @@
 page {
   flex-direction: column;
   justify-content: flex-start;
+  background-color: #f6f6f6;
 }
 
-.search,page {
+.search,
+page {
   display: flex;
 }
 
 .search {
-  background-color: #f6f6f6;
+  background-color: #ffffff;
   border-radius: 40rpx;
   height: 80rpx;
   justify-content: space-between;
@@ -46,17 +48,16 @@ page {
   width: 50rpx;
 }
 
-.van-nav-bar {
-  background-color: #fff!important;
-}
 
+
+/* 瀑布图 */
 .waterfall_warper {
   display: flex;
-  margin-top: 30rpx;
   width: 100%;
 }
 
-.waterfall_warper .left,.waterfall_warper .right {
+.waterfall_warper .left,
+.waterfall_warper .right {
   display: inline-block;
   width: 50%;
 }
@@ -65,15 +66,22 @@ page {
   border-radius: 25rpx;
   margin: 0 auto;
   width: 92%;
+  background-color: #ffffff;
+  border-radius: 25rpx;
+  animation-name: example;
+  animation-duration: 1s;
 }
 
 .waterfall-item .item {
-  margin-bottom: 15rpx;
+  width: 90%;
+  margin: 15rpx auto;
 }
 
 .waterfall-item .img image {
+  margin-top: 20rpx;
   border-radius: 20rpx;
   width: 100%;
+
 }
 
 .waterfall-item .trade_title {
@@ -107,15 +115,16 @@ page {
   display: flex;
 }
 
-.waterfall-item .tag .classify,.waterfall-item .tag .quality {
-  border: 1px solid hsla(0,100%,70%,.7);
+.waterfall-item .tag .classify,
+.waterfall-item .tag .quality {
+  border: 1px solid hsla(0, 100%, 70%, .7);
   border-radius: 8rpx;
-  color: hsla(0,100%,70%,.7);
-  font-size: 28rpx;
+  color: hsla(0, 100%, 70%, .7);
+  font-size: 22rpx;
   margin-right: 8rpx;
   padding: 5rpx;
   text-align: center;
-  width: 33%;
+  white-space: nowrap;
 }
 
 .waterfall-item .price_view {
@@ -142,7 +151,9 @@ page {
 
 .waterfall-item .user {
   display: flex;
+  padding-bottom: 20rpx;
 }
+
 
 .waterfall-item .user .avatar image {
   border-radius: 25rpx;
@@ -150,7 +161,8 @@ page {
   width: 50rpx;
 }
 
-.waterfall-item .user .avatar,.waterfall-item .user .nickname {
+.waterfall-item .user .avatar,
+.waterfall-item .user .nickname {
   color: #9ea0a1;
   display: flex;
   flex-direction: column;
@@ -165,19 +177,30 @@ page {
   width: 80%;
 }
 
-.van-tab--active,.van-tabs__wrap {
-  font-weight: bolder!important;
+/* tab样式覆盖 */
+.van-tab--active,
+.van-tabs__wrap {
+  font-weight: bolder !important;
 }
 
 .van-tab--active {
-  font-size: larger!important;
+  font-size: larger !important;
+}
+
+.van-tabs__scroll {
+  background-color: #f6f6f6 !important;
+}
+
+/* 导航样式覆盖 */
+.van-nav-bar {
+  background-color: #f6f6f6 !important;
 }
 
 .post {
   background-color: #ffd23c;
   border-radius: 50rpx;
   bottom: 200rpx;
-  box-shadow: 2.8px 2.8px 2.2px rgba(0,0,0,.02),6.7px 6.7px 5.3px rgba(0,0,0,.028),12.5px 12.5px 10px rgba(0,0,0,.035),22.3px 22.3px 17.9px rgba(0,0,0,.042),41.8px 41.8px 33.4px rgba(0,0,0,.05),100px 100px 80px rgba(0,0,0,.07);
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, .02), 6.7px 6.7px 5.3px rgba(0, 0, 0, .028), 12.5px 12.5px 10px rgba(0, 0, 0, .035), 22.3px 22.3px 17.9px rgba(0, 0, 0, .042), 41.8px 41.8px 33.4px rgba(0, 0, 0, .05), 100px 100px 80px rgba(0, 0, 0, .07);
   color: #fff;
   font-size: 50rpx;
   height: 100rpx;
@@ -186,4 +209,19 @@ page {
   right: 50rpx;
   text-align: center;
   width: 100rpx;
+}
+
+
+/* 动画 */
+@keyframes example {
+  from {
+    transform: scale(0, 0);
+
+  }
+
+
+  to {
+    transform: scale(1, 1);
+
+  }
 }

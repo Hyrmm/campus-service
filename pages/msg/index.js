@@ -1,5 +1,5 @@
 // pages/msg/index.js
-app = getApp()
+var app = getApp()
 Page({
 
   /**

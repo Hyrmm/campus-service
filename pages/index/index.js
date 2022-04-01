@@ -1,5 +1,5 @@
 // 获取应用实例
-const app = getApp()
+var app = getApp()
 var temp_local_scool_value
 Page({
   data: {
@@ -88,6 +88,7 @@ Page({
   },
   onLoad() {
     // 初始化定位学校
+    console.log(app)
     try {
       var local_school = wx.getStorageSync('local_school')
       if (!local_school) {

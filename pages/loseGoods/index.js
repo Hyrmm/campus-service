@@ -1,56 +1,46 @@
 // pages/loseGoods/index.js
+var app = getApp()
 const moudle = require("../../js/comment.js")
-let current_tabs_index = 0
-let first_tab = true
-let db_loseOrFind_data = {
-  lose: {
-    temp_data_list: [],
-    storage_data_list: [],
-    total_pages: null,
-    total_items: null,
-    hasNext: null,
-    current_page: 1
-  },
-  find: {
-    temp_data_list: [],
-    storage_data_list: [],
-    total_pages: null,
-    total_items: null,
-    hasNext: null,
-    current_page: 1
-  }
-}
-let db_data = {
-  lose_left: [],
-  lose_right: [],
-  find_left: [],
-  find_right: []
-}
+let db_data = {}
 Page({
-  loseOrFind_data: {
-    lose: {
-      temp_data_list: [],
-      storage_data_list: [],
-      total_pages: null,
-      total_items: null,
-      hasNext: null,
-      current_page: 1
-    },
-    find: {
-      temp_data_list: [],
-      storage_data_list: [],
-      total_pages: null,
-      total_items: null,
-      hasNext: null,
-      current_page: 1
-    }
-  },
   data: {
     movies: app.globalData.movies,
-    lose_left: [],
-    lose_right: [],
-    find_left: [],
-    find_right: []
+    loseOrFind_data: {
+      lose: {
+        current_page: 1,
+        hasNext: true,
+        code: "3206",
+        lostFoundMainImgList: [],
+        render_data: {
+          left: {
+            total_height: 0,
+            data: []
+
+          },
+          right: {
+            total_height: 0,
+            data: []
+          }
+        }
+      },
+      find: {
+        current_page: 1,
+        hasNext: true,
+        code: "3207",
+        lostFoundMainImgList: [],
+        render_data: {
+          left: {
+            total_height: 0,
+            data: []
+          },
+          right: {
+            total_height: 0,
+            data: []
+          }
+        }
+      }
+    },
+    current_tabs_index: 0
   },
   navBack() {
     wx.navigateBack({
@@ -62,16 +52,16 @@ Page({
     let data
     switch (event.currentTarget.dataset.type) {
       case "lose_left":
-        data = this.data.lose_left[event.currentTarget.dataset.index]
+        data = this.data.loseOrFind_data.lose.render_data.left.data[event.currentTarget.dataset.index]
         break;
       case "lose_right":
-        data = this.data.lose_right[event.currentTarget.dataset.index]
+        data = this.data.loseOrFind_data.lose.render_data.right.data[event.currentTarget.dataset.index]
         break
       case "find_left":
-        data = this.data.find_left[event.currentTarget.dataset.index]
+        data = this.data.loseOrFind_data.find.render_data.left.data[event.currentTarget.dataset.index]
         break;
       case "find_right":
-        data = this.data.find_right[event.currentTarget.dataset.index]
+        data = this.data.loseOrFind_data.find.render_data.right.data[event.currentTarget.dataset.index]
         break
     }
     wx.navigateTo({
@@ -92,40 +82,21 @@ Page({
     })
   },
   tabs_change(event) {
-    let self = this
-    current_tabs_index = event.detail.index
-    // 从进入页面第一次切换tabs，加载find数据
-    if (current_tabs_index == 1 && first_tab) {
-      first_tab = false
-      if (db_data.find_left.length == 0 && db_data.find_right.length == 0) {
-        // 无历史缓存
-        moudle.get_loseOrFind_data(self, "3207", 1)
-      } else {
-        this.setData({
-          find_left: db_data.find_left,
-          find_right: db_data.find_right
-        })
-      }
+    this.data.current_tabs_index = event.detail.index
+    let loseOrFind_code = this.data.current_tabs_index == 0 ? "3206" : "3207"
+    let loseOrFind_type_data = this.data.current_tabs_index == 0 ? this.data.loseOrFind_data.lose : this.data.loseOrFind_data.find
+    if (loseOrFind_type_data.render_data.left.data.length == 0) {
+      // 当前没有数据就去请求
+      moudle.get_loseOrFind_data2.call(this, loseOrFind_code, 1)
     }
+
+
+
 
 
   },
   onLoad: function (options) {
-    var self = this
-    // 读取备份数据db_loseOrFind_data
-    this.loseOrFind_data = db_loseOrFind_data
-    // 初加载lose渲染数据,根据缓存去加载
-    if (db_data.lose_left.length == 0 && db_data.lose_right.length == 0) {
-      // 无历史缓存
-      moudle.get_loseOrFind_data(self, "3206", this.loseOrFind_data.lose.current_page)
-    } else {
-      // 有历史缓存 性能考虑只渲染当前tabs内容（lose）
-      this.setData({
-        lose_left: db_data.lose_left,
-        lose_right: db_data.lose_right
-      })
-    }
-
+    moudle.get_loseOrFind_data2.call(this, "3206", 1)
   },
   onReady: function () {
     // 获取nav高度,适配tabs offset_top
@@ -137,21 +108,18 @@ Page({
     })
   },
   onReachBottom: moudle.fangdou(function () {
-    var self = this
-    // 根据当前current_tabs_index 去得到当前current_type的loseOrFind_code，current_page
-    let loseOrFind_code = current_tabs_index == 0 ? "3206" : "3207"
-    let current_type = current_tabs_index == 0 ? this.loseOrFind_data.lose : this.loseOrFind_data.find
+    let loseOrFind_code = this.data.current_tabs_index == 0 ? "3206" : "3207"
+    let current_type = this.data.current_tabs_index == 0 ? this.data.loseOrFind_data.lose : this.data.loseOrFind_data.find
     // 判断当前current_type的hasNext,从而觉得是否去请求，节流操作
     if (current_type.hasNext) {
-      moudle.get_loseOrFind_data(self, loseOrFind_code, current_type.current_page + 1)
+      moudle.get_loseOrFind_data2.call(this, loseOrFind_code, current_type.current_page + 1)
     } else {
       wx.showToast({
         title: '暂无数据',
         icon: "error"
       })
     }
-
-  }, 1200),
+  }, 250),
   onUnload: function () {
     // 页面销毁前数据备份和数据初始化
     // 已渲染数据缓存,节流

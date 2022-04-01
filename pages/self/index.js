@@ -1,5 +1,5 @@
 // pages/self/index.js
-app = getApp()
+var app = getApp()
 Page({
 
   data: {

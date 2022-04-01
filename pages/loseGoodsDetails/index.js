@@ -1,5 +1,5 @@
 // pages/loseGoodsDetails/index.js
-const app = getApp()
+var app = getApp()
 const moudle = require("../../js/comment.js")
 const FormData = require('../../js/formData')
 let e = null;
@@ -8,8 +8,6 @@ Page({
   /**
    * 页面的初始数据
    */
-  binddragging(t) {},
-  binddragend(t) {},
   bindscroll(a) {
     let n = this;
     null !== e && clearTimeout(e), e = setTimeout(function () {
@@ -104,10 +102,16 @@ Page({
     input_display: false,
     input_value: "",
     bottom: 0,
-    msg_show: !1,
+    msg_show: false,
     img_list: [],
     scroll_Maxheight: 0,
     scroll_index: 1
+  },
+  // 联系我
+  contect_me() {
+    this.setData({
+      msg_show: true
+    })
   },
   // 展开二级留言事件
   openSecondComment(event) {
@@ -130,6 +134,7 @@ Page({
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('data', function (data) {
       console.log(data)
+
       function o(src) {
         return new Promise(e => {
           wx.getImageInfo({
