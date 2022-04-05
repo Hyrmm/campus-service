@@ -1,0 +1,83 @@
+<van-nav-bar title="校园云服务" border="{{false}}" />
+<view class="container">
+  <view class="head">
+    <view class="title">
+      <view class="title-1">早上好,程曜</view>
+      <view class="title-2">风和日丽出去走走</view>
+    </view>
+    <view class="weather">
+      <image src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/weather/3.png"></image>
+    </view>
+  </view>
+  <view class="sign_course">
+    <image mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/classify/sign.png"></image>
+    <image mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/classify/course.png"></image>
+  </view>
+  <view class="swiper">
+    <text class="title">动态</text>
+    <swiper indicator-dots='true' autoplay='true' interval='3000' duration='1000' circular='true' class="swip">
+      <swiper-item>
+        <image mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/banner/banner1.png"></image>
+      </swiper-item>
+      <swiper-item>
+        <image mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/banner/banner2.png"></image>
+      </swiper-item>
+      <swiper-item>
+        <image mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/banner/banner3.png"></image>
+      </swiper-item>
+      <swiper-item>
+        <image mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/banner/banner4.png"></image>
+      </swiper-item>
+    </swiper>
+
+  </view>
+  <view class="classify">
+    <view class="title">校园生活</view>
+    <scroll-view scroll-x="true" style="white-space: nowrap;">
+
+
+      <view class="classify-cell" style="background-image: linear-gradient(135deg, #ff6f52 0%, #ffa775 100%);">
+        <view class="text">
+          <view class="title">闲置市场</view>
+          <view class="under_line"></view>
+          <view class="comment">用不到低价转了</view>
+          <view class="button" style="color: #FF7354;">立即查看</view>
+        </view>
+        <view class="cicle1"></view>
+        <view class="cicle2"></view>
+      </view>
+      <view class="classify-cell" style="background-image: linear-gradient(135deg, #906bff 0%, #ba89ff 100%);">
+        <view class="text">
+          <view class="title">失物招领</view>
+          <view class="under_line"></view>
+          <view class="comment">丢了东西不用担心</view>
+          <view class="button" style="color:#906BFF;">立即查看</view>
+        </view>
+        <view class="cicle1"></view>
+        <view class="cicle2"></view>
+      </view>
+      <view class="classify-cell" style="background-image: linear-gradient(135deg, #fec333 0%, #fed970 100%);">
+        <view class="text">
+          <view class="title">校园代跑</view>
+          <view class="under_line"></view>
+          <view class="comment">你来出钱我出力</view>
+          <view class="button" style="color:#FEC333;">立即查看</view>
+        </view>
+        <view class="cicle1"></view>
+        <view class="cicle2"></view>
+      </view>
+    </scroll-view>
+
+  </view>
+  <view style="height: 200rpx;"></view>
+</view>
+
+
+
+<!-- 底部tarbar -->
+<van-tabbar active="{{ tab_bar_index }}" bind:change="tab_bar_change" active-color="#ffd23c" inactive-color="#000">
+  <van-tabbar-item icon="wap-home-o">首页</van-tabbar-item>
+  <van-tabbar-item icon="search" dot>暂定</van-tabbar-item>
+  <van-tabbar-item icon="chat-o" info="5">消息</van-tabbar-item>
+  <van-tabbar-item icon="manager-o">我的</van-tabbar-item>
+</van-tabbar>

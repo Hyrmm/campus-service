@@ -46,6 +46,7 @@
       loading="{{ loading.confirm }}"
       custom-class="van-dialog__confirm"
       custom-style="color: {{ confirmButtonColor }}"
+
       open-type="{{ confirmButtonOpenType }}"
       lang="{{ lang }}"
       business-id="{{ businessId }}"

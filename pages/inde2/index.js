@@ -1,4 +1,4 @@
-// pages/home/home.js
+// pages/inde2/index.js
 Page({
 
   /**

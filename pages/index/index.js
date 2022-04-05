@@ -113,27 +113,8 @@ Page({
 
 
   },
-  onReady() {
-
-  },
 
 
 
 
-
-
-
-
-  //用户下拉刷新行为
-  onPullDownRefresh(e) {
-    console.log(e)
-  },
-  //用户上拉触底行为
-  onReachBottom() {
-    console.log(1)
-  },
-  //用户滑动页面行为
-  onPageScroll(event) {
-    console.log(event)
-  }
 })

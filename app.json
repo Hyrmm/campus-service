@@ -10,8 +10,19 @@
     "pages/loseGoods/index",
     "pages/loseGoodsPost/index",
     "pages/loseGoodsDetails/index",
-    "pages/secondHandDetails/index"
+    "pages/secondHandDetails/index",
+    "pages/self_post/index",
+    "pages/self_sign/index",
+    "pages/self_sign_detail/index",
+    "pages/inde2/index",
+    "pages/sign_start/index",
+    "pages/sign_create/index"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于定位"
+    }
+  },
   "window": {
     "navigationStyle": "custom",
     "backgroundTextStyle": "light",
@@ -53,7 +64,8 @@
     "van-switch": "@vant/weapp/switch/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-sticky": "@vant/weapp/sticky/index",
-    "van-card": "@vant/weapp/card/index"
+    "van-card": "@vant/weapp/card/index",
+    "van-count-down": "@vant/weapp/count-down/index"
   },
   "tabBar": {
     "list": [

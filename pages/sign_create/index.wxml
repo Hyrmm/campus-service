@@ -1,0 +1,32 @@
+<van-nav-bar id="nav" title="统计签到" border="{{false}}" left-text="返回" left-arrow bind:click-left="navBack" fixed="{{true}}" z-index="{{2}}" placeholder="{{true}}" />
+
+
+<view class="container-clock">
+  <view class="clock">
+    <view class="warper-left">
+      <view class="left">
+      </view>
+      {{sign_code[0]}}
+    </view>
+    <view class="warper-right">
+      <view class="right">
+      </view>
+      {{sign_code[1]}}
+    </view>
+  </view>
+
+</view>
+<view class="tips">
+  <van-icon name="question" style="color: #657AFF;" />上方四位数为签到码，下方按钮可提前结束签到
+</view>
+
+<view class="button-warper">
+  <view class="teacher_button button">
+    <view class="title">结束签到</view>
+    <view class="comment">老师</view>
+  </view>
+  <view class="planner_button button">
+    <view class="title">结束签到</view>
+    <view class="comment">策划人</view>
+  </view>
+</view>

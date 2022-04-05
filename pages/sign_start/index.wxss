@@ -1,0 +1,74 @@
+
+/* 通用 */
+page{
+  display: flex;
+  flex-direction: column;
+  background-color: #f6f6f6;
+  height: 100vh;
+}
+/* 标题 */
+.create{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 50rpx 0;
+}
+.create .title{
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: lighter;
+  color: rgba(000, 000, 000, .5);
+  
+}
+
+/* 输入圆圈 */
+.create .round{
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 120rpx;
+  flex: 1;
+}
+.create .round view{
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #f6f6f6;
+  border-radius: 20rpx;
+  line-height: 40rpx;
+  font-size: 80rpx;
+  color: #657AFF;
+}
+/* 键盘 */
+.create .key_borad {
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 500rpx;
+  position: fixed;
+  bottom: 0;
+}
+
+.key_borad .row {
+  flex: 1;
+  display: flex;
+  border-top: #f6f6f6 2px solid;
+}
+
+.key_borad .row .cell {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: #f6f6f6 2px solid;
+  font-weight: bolder;
+  font-size: 40rpx;
+}
+
+/* 样式覆盖 */
+.van-nav-bar {
+  background-color: #f6f6f6 !important;
+}

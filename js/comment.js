@@ -257,40 +257,40 @@ function get_loseOrFind_data2(loseOrFind_code, page) {
       })
     }
     current_data_type.current_page = data.currentPage
-    current_data_type.hasNext = data.hasNext
-      !(async function () {
-        for (let index in data.lostFoundMainImgList) {
-          // 没有图添加默认图
-          if (data.lostFoundMainImgList[index].imgUrl.length == 0) {
+    current_data_type.hasNext = data.hasNext;
+    !(async function () {
+      for (let index in data.lostFoundMainImgList) {
+        // 没有图添加默认图
+        if (data.lostFoundMainImgList[index].imgUrl.length == 0) {
 
-            data.lostFoundMainImgList[index].imgUrl.push("https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/defult_img.jpg")
-          }
-          // 高度
-          let res = await get_img_originHeight(data.lostFoundMainImgList[index].imgUrl[0])
-          data.lostFoundMainImgList[index].lostFoundMain.height = res
-          // 时间
-          data.lostFoundMainImgList[index].lostFoundMain.createTime = getTime(data.lostFoundMainImgList[index].lostFoundMain.createTime)
-          // 状态
-          data.lostFoundMainImgList[index].lostFoundMain.status = getStatus(data.lostFoundMainImgList[index].lostFoundMain.status)
-          // 归属
-          if (current_data_type.render_data.left.total_height <= current_data_type.render_data.right.total_height) {
-            // 左push 累计高度
-            current_data_type.render_data.left.data.push(data.lostFoundMainImgList[index])
-            current_data_type.render_data.left.total_height += res
-            // 左渲染
-            data_render.call(this, 0)
-          } else {
-            // 右push 累计高度
-            current_data_type.render_data.right.data.push(data.lostFoundMainImgList[index])
-            current_data_type.render_data.right.total_height += res
-            // 右渲染
-            data_render.call(this, 1)
-
-          }
-
+          data.lostFoundMainImgList[index].imgUrl.push("https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/defult_img.jpg")
+        }
+        // 高度
+        let res = await get_img_originHeight(data.lostFoundMainImgList[index].imgUrl[0])
+        data.lostFoundMainImgList[index].lostFoundMain.height = res
+        // 时间
+        data.lostFoundMainImgList[index].lostFoundMain.createTime = getTime(data.lostFoundMainImgList[index].lostFoundMain.createTime)
+        // 状态
+        data.lostFoundMainImgList[index].lostFoundMain.status = getStatus(data.lostFoundMainImgList[index].lostFoundMain.status)
+        // 归属
+        if (current_data_type.render_data.left.total_height <= current_data_type.render_data.right.total_height) {
+          // 左push 累计高度
+          current_data_type.render_data.left.data.push(data.lostFoundMainImgList[index])
+          current_data_type.render_data.left.total_height += res
+          // 左渲染
+          data_render.call(this, 0)
+        } else {
+          // 右push 累计高度
+          current_data_type.render_data.right.data.push(data.lostFoundMainImgList[index])
+          current_data_type.render_data.right.total_height += res
+          // 右渲染
+          data_render.call(this, 1)
 
         }
-      }).call(this);
+
+
+      }
+    }).call(this);
 
 
 
@@ -511,7 +511,7 @@ function get_secondHand_data(t, e) {
           default:
             s.fleaMarketMain.goodsCondition = "未知";
         }
-        s.fleaMarketMain.createTime=getTime(s.fleaMarketMain.createTime)
+        s.fleaMarketMain.createTime = getTime(s.fleaMarketMain.createTime)
         o <= i ? (this.data.goods_data[t].left.push(s), o += s.fleaMarketMain.height) : (this.data.goods_data[t].right.push(s),
           i += s.fleaMarketMain.height);
         this.setData({
@@ -568,8 +568,41 @@ function secondHandPost_form_limit() {
   return [true]
 }
 
+function getLocation() {
+  return new Promise(resolve => {
+    wx.getSetting.call(this, ({
+      success: (res) => {
+        if (res.authSetting['scope.userLocation'] == false) {
+          // 用户未授权位置信息 显示窗口去设置
+          this.setData({
+            sign_code: []
+          })
+          wx.showModal({
+            title: '温馨提示',
+            content: '检测当前未授权获取位置信息,是否前往授权页面',
+            success(res) {
+              if (res.confirm) {
+                wx.openSetting({})
+              } else {
+                wx.navigateBack({
+                  delta: 0,
+                })
+              }
+            }
+          })
+          resolve(false)
+        } else {
+          console.log("授权了")
+          resolve(true)
+        }
+      }
+    }))
+  })
 
+}
 
+function response_handle(res){
+}
 
 
 module.exports = {
@@ -581,5 +614,6 @@ module.exports = {
   fangdou2: fangdou2,
   get_secondHand_data: get_secondHand_data,
   secondHandPost_form_limit: secondHandPost_form_limit,
-  get_loseOrFind_data2: get_loseOrFind_data2
+  get_loseOrFind_data2: get_loseOrFind_data2,
+  get_location: getLocation
 }

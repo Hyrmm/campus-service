@@ -1,0 +1,128 @@
+/* 倒计时 */
+.container-clock {
+  margin: 0 auto;
+  margin-top: 40rpx;
+  display: flex;
+  position: relative;
+}
+
+.clock {
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+}
+
+.warper-right,
+.warper-left {
+  width: 279.99rpx;
+  height: 560rpx;
+  position: relative;
+  overflow: hidden;
+  line-height: 560rpx;
+  font-size: 120rpx;
+  font-weight: bolder;
+}
+
+.warper-right {
+  text-align: left;
+}
+
+.warper-left {
+  text-align: right;
+}
+
+.right,
+.left {
+  width: 400rpx;
+  height: 400rpx;
+  border: 80rpx #F9F8FE solid;
+  border-top: #6579FF 80rpx solid;
+  border-right: #6579FF 80rpx solid;
+  border-radius: 50%;
+  position: absolute;
+  /* background-color: #F9F8FE; */
+}
+
+.right {
+  transform: rotate(225deg);
+  animation-name: right;
+  animation-duration: 300s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  top: 0;
+  right: 0;
+}
+
+.left {
+  transform: rotate(45deg);
+  animation-name: left;
+  animation-duration: 300s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  top: 0;
+  left: 0;
+}
+
+@keyframes right {
+  0% {
+    transform: rotate(225deg);
+  }
+
+  50%,
+  100% {
+    transform: rotate(405deg);
+  }
+}
+
+@keyframes left {
+
+  0%,
+  50% {
+    transform: rotate(45deg);
+  }
+
+  100% {
+    transform: rotate(225deg);
+  }
+}
+
+
+/* tips */
+.tips {
+  width: 85%;
+  margin: 0 auto;
+  color: rgba(000, 000, 000, .2);
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 40rpx;
+}
+
+/* button */
+.button-warper {
+  width: 90%;
+  margin: 80rpx auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 30rpx;
+  padding: 40rpx 90rpx;
+
+}
+.teacher_button{
+  background-color: #657AFF;
+  color: #fff;
+}
+.planner_button{
+  background-color: #F9F8FE;
+}
+.button .title{
+  font-size: 30rpx;
+}
+.button .comment{
+  font-size: 50rpx;
+  font-weight: bolder;
+} 

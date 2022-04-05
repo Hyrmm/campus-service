@@ -1,5 +1,5 @@
 <van-nav-bar title="校园云服务" />
-<image src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/selfBg.jpg" class="top-bg "></image>
+<image mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/self_bg.png" class="top-bg "></image>
 <view class="self-container">
   <view style="display: flex;">
     <view class="avatar-container" bindtap="getUserProfile">
@@ -15,7 +15,8 @@
           <van-tag type="{{bind_tag_type}}" size="large">{{bind_tag_content}}</van-tag>
         </view>
       </van-cell>
-      <van-cell title="我的发布" size="large" icon="orders-o" is-link />
+      <van-cell title="我的发布" size="large" icon="orders-o" is-link url="/pages/self_post/index"/>
+      <van-cell title="面对面签到" size="large" icon="orders-o" is-link url="/pages/self_sign/index"/>
     </van-cell-group>
 
   </view>
@@ -23,7 +24,7 @@
     <van-cell-group inset>
       <van-cell title=" 联系客服" size="large" icon="phone-o" is-link />
       <van-cell title="关于我们" size="large" icon="info-o" is-link />
-      <van-cell title="设置" size="large" icon="setting-o" is-link />
+      <van-cell title="设置" size="large" icon="setting-o" is-link url="/pages/inde2/index"/>
     </van-cell-group>
 
   </view>
@@ -34,7 +35,7 @@
 
 
 <!-- 底部tarbar -->
-<van-tabbar active="{{ active }}" bind:change="tab_bar_change" active-color="#ffd23c" inactive-color="#000">
+<van-tabbar active="{{ active }}" bind:change="tab_bar_change" active-color="#ffd23c" inactive-color="#000" style="z-index: 50;">
   <van-tabbar-item icon="wap-home-o">首页</van-tabbar-item>
   <van-tabbar-item icon="search" dot>暂定</van-tabbar-item>
   <van-tabbar-item icon="chat-o" info="5">消息</van-tabbar-item>

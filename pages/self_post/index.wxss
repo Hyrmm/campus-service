@@ -1,0 +1,43 @@
+/* tab样式覆盖 */
+.van-tabs__line {
+  background-color: #ffd23c !important;
+}
+.van-tab{
+  font-size: 35rpx !important;
+  color: gray;
+}
+.van-tab--active {
+  font-weight: bolder !important;
+  color: #000 !important;
+}
+/* 通用 */
+.container{
+  background-color: #f6f6f6;
+  height: 100vh;
+  padding: 20rpx 0;
+}
+.cell{
+  width: 95%;
+  height: 300rpx;
+  margin: 20rpx auto;
+  background-color: #fff;
+  border-radius: 25rpx;
+}
+/* 分类闲置市场 */
+
+.status {
+  margin: 20rpx 0;
+  display: flex;
+}
+
+.status .status-item {
+  flex: 1;
+  text-align: center;
+  margin: 0 10rpx;
+  background-color: #f3f4f6;
+  border-radius: 20rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 25rpx;
+  color: rgba(000, 000, 000, 0.6);
+}

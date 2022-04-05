@@ -1,5 +1,5 @@
 <!-- index.wxml -->
-<van-nav-bar title="校园云服务" />
+<van-nav-bar title="校园云服务" border="{{false}}" />
 <view class="headBg">
   <view class="title">
     <!-- 标题轮播图等 custom-style-->
@@ -26,9 +26,6 @@
 </view>
 
 <!-- 定位结束 -->
-<view style="width: 100%;margin:5rpx auto;">
-  <van-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
-</view>
 <van-grid column-num="2" border="{{false}}" type="primary">
   <van-grid-item use-slot url="/pages/secondHand/index">
     <image style="width: 100%; height: 90px;" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/secondHand.png" />

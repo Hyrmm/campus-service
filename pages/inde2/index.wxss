@@ -1,0 +1,172 @@
+/* 通用 */
+
+page {
+  display: flex;
+  flex-direction: column;
+  --box-radius: 30rpx;
+}
+
+.container {
+  width: 88%;
+  margin: 0 auto;
+}
+
+/* head */
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title .title-1 {
+  font-weight: bolder;
+  font-size: 45rpx;
+}
+
+.title .title-2 {
+  font-size: 28rpx;
+  font-weight: lighter;
+  margin-top: 15rpx;
+}
+
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.weather image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+/* sign_course */
+
+.sign_course {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25rpx;
+}
+
+.sign_course image {
+  width: 45%;
+  border-radius: var(--box-radius);
+}
+
+
+/* swiper */
+.swiper {
+  margin-top: 30rpx;
+  border-radius: var(--box-radius);
+}
+
+.swiper .title {
+  font-weight: bolder;
+  font-size: 40rpx;
+}
+
+.swiper image {
+  width: 100%;
+  border-radius: var(--box-radius);
+}
+
+.swiper swiper-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+/* classify */
+.classify {
+  margin-top: 20rpx;
+}
+
+.classify .title {
+  font-weight: bolder;
+  font-size: 40rpx;
+}
+
+.classify .img_warper {
+  width: 42%;
+  display: inline-block;
+  margin-right: 20rpx;
+  border-radius: var(--box-radius);
+}
+
+.classify image {
+  width: 100%;
+}
+
+.classify .classify-cell {
+  display: inline-block;
+  width: 70%;
+  height: 250rpx;
+  margin-right: 30rpx;
+  border-radius: var(--box-radius);
+  vertical-align: top;
+  position: relative;
+}
+.classify-cell .text{
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.classify-cell .text .title{
+  font-size: 36rpx;
+  font-weight: bolder;
+  color: #fff;
+  margin-top: 18rpx;
+}
+.classify-cell .text .under_line{
+  height: 10rpx;
+  background-color: #fff;
+  width: 14%;
+  border-radius: 5rpx;
+
+}
+.classify-cell .text .comment{
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 100;
+  margin-top: 15rpx;
+}
+.classify-cell .text .button{
+  width: 60%;
+  background-color: #fff;
+  height: 60rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 25rpx;
+  margin-left: -15rpx;
+}
+/* 圆 */
+.classify-cell .cicle1{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 150rpx;
+  background-image: linear-gradient(45deg, rgba(255,255,255,0), rgba(255,255,255,.6));
+}
+.classify-cell .cicle2{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 45rpx;
+  position: absolute;
+  top: 130rpx;
+  right: 20rpx;
+  background-image: linear-gradient(45deg, rgba(255,255,255,0), rgba(255,255,255,.6));
+}

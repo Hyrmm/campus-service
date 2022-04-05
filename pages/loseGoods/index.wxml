@@ -70,9 +70,9 @@
             </view>
             <view class="item_container location_date">
               <view class="item_location">
-                <van-icon name="location-o" />{{item.loseFoundMain.address}}
+                <van-icon name="location-o" />{{item.lostFoundMain.address}}
               </view>
-              <view class="item_date">{{item.loseFoundMain.createTime}}</view>
+              <view class="item_date">{{item.lostFoundMain.createTime}}</view>
             </view>
           </view>
         </view>
@@ -108,9 +108,9 @@
             </view>
             <view class="item_container location_date">
               <view class="item_location">
-                <van-icon name="location-o" />{{item.loseFoundMain.address}}
+                <van-icon name="location-o" />{{item.lostFoundMain.address}}
               </view>
-              <view class="item_date">{{item.loseFoundMain.createTime}}</view>
+              <view class="item_date">{{item.lostFoundMain.createTime}}</view>
             </view>
           </view>
         </view>
@@ -125,9 +125,9 @@
             </view>
             <view class="item_container location_date">
               <view class="item_location">
-                <van-icon name="location-o" />{{item.loseFoundMain.address}}
+                <van-icon name="location-o" />{{item.lostFoundMain.address}}
               </view>
-              <view class="item_date">{{item.loseFoundMain.createTime}}</view>
+              <view class="item_date">{{item.lostFoundMain.createTime}}</view>
             </view>
           </view>
         </view>
