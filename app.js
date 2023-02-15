@@ -19,7 +19,7 @@ App({
         url: 'https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/3.png'
       },
     ],
-    url: "https://hyrm.club/miniProgrameApi",
+    url: "http://hyrm.club:8001",
 
   },
   onLaunch() {
