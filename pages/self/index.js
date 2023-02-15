@@ -1,5 +1,6 @@
 // pages/self/index.js
 var app = getApp()
+const moudle = require("../../js/comment")
 Page({
 
   data: {
@@ -39,25 +40,7 @@ Page({
   },
   // tabBar跳转
   tab_bar_change(event) {
-    switch (event.detail) {
-      case 0:
-        wx.switchTab({
-          url: '/pages/index/index',
-        })
-        break;
-      case 2:
-        wx.switchTab({
-          url: '/pages/msg/index',
-        })
-        break;
-      case 3:
-        wx.switchTab({
-          url: '/pages/self/index',
-        })
-        break;
-      default:
-        break;
-    }
+    moudle.tabBar_change(event)
   },
 
 

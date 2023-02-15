@@ -95,8 +95,8 @@ Page({
                   duration: 2000,
                   complete: function () {
                     setTimeout(function () {
-                      wx.switchTab({
-                        url: "/pages/index/index"
+                      wx.navigateBack({
+                        delta: 0,
                       })
                     }, 2000)
                   }

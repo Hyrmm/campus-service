@@ -1,4 +1,3 @@
-// app.js
 App({
   // 全局数据
   globalData: {
@@ -9,9 +8,7 @@ App({
       avatarUrl: "https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/selfAvatar.png",
       account_status: null
     },
-    // 是否定位
-    is_has_local: false,
-    // 轮播图图片地址
+    bind_userInfo: {},
     movies: [{
         url: 'https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/1.png'
       },
@@ -22,16 +19,10 @@ App({
         url: 'https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/3.png'
       },
     ],
-    // 切换定位选项
-    local_school: ["南昌师范学院", "清华大学", "北京大学"],
-    // 服务器地址
-    url: "http://hyrm.club:4001",
+    url: "https://hyrm.club/miniProgrameApi",
+
   },
   onLaunch() {
-    // 打开调试
-    wx.setEnableDebug({
-      enableDebug: true
-    })
     var self = this
     // 检测微信登录缓存
     try {
@@ -48,8 +39,8 @@ App({
     } catch (e) {}
 
     // 轮询是否登录, 再去调用是否绑定
-
     var interval = function () {
+
       if (self.globalData.userInfo.hasUserInfo) {
         wx.login({
           success(res) {
@@ -60,7 +51,6 @@ App({
               },
               success(res) {
                 // 储存当前用户账户状态
-                console.log(res)
                 self.globalData.userInfo.account_status = res.data.code
                 try {
                   wx.setStorageSync("token", res.data.data)
@@ -101,7 +91,6 @@ App({
                       title: "通知",
                       content: "你的在校认证正在处于封禁状态",
                     })
-                    console.log(res)
                     break
                   case 1104:
                     // code:1104=》 审核拒绝
@@ -135,14 +124,41 @@ App({
           }
         })
         clearInterval(intervalId)
-      } else {
-        console.log("没登录")
-      }
+      } else {}
     }
     // 第一次250毫秒轮询检测是否微信登录,在去请求当前账户认证状态
     var intervalId = setInterval(interval, 250)
     // 获取设备数据
     this.globalData.systemInfo = wx.getSystemInfoSync()
   },
-
+  watch: function (key, method) {
+    var obj = this.globalData;
+    //加个前缀生成隐藏变量，防止死循环发生
+    let ori = obj[key]; //obj[key]这个不能放在Object.defineProperty里
+    if (ori) { //处理已经声明的变量，绑定处理
+      method(ori);
+    }
+    Object.defineProperty(obj, key, {
+      configurable: true,
+      enumerable: true,
+      set: function (value) {
+        this['_' + key] = value;
+        method(value);
+      },
+      get: function () {
+        // 在其他界面调用key值的时候，这里就会执行。
+        if (typeof this['_' + key] == 'undefined') {
+          if (ori) {
+            //这里读取数据的时候隐藏变量和 globalData设置不一样，所以要做同步处理
+            this['_' + key] = ori;
+            return ori;
+          } else {
+            return undefined;
+          }
+        } else {
+          return this['_' + key];
+        }
+      }
+    })
+  },
 })

@@ -9,9 +9,26 @@
       <view bindtap="secondTabsChange" data-index="3" class="status-item status_finish" style="{{currentSecondTabsIndex==3?'background-color:#ffd23c;':''}}">已发布</view>
     </view>
     <view class="container">
-      <view class="cell"></view>
-      <view class="cell"></view>
-      <view class="cell"></view>
+      <view bindtap="get_detail" wx:for="{{second_hand_data.fleaMarketMain}}" class="cell" data-index="{{index}}" data-type="{{currentMainTabsIndex}}">
+        <view class="cell-item">
+          <view class="image">
+            <image mode="scaleToFill" style="width: 250rpx;height: 160rpx;" src="{{item.imageUrlList[0]}}"></image>
+          </view>
+          <view class="title_time">
+            <view class="title">{{item.fleaMarketMain.title}}</view>
+            <view class="time">{{item.fleaMarketMain.createTime}}</view>
+          </view>
+          <view class="price">
+            <view>￥{{item.fleaMarketMain.price}}</view>
+          </view>
+          <view class="tag" style="background-color: {{item.fleaMarketMain.status_color}};">
+            <view>{{item.fleaMarketMain.status}}</view>
+          </view>
+        </view>
+        <view class="cell-button">
+          下架
+        </view>
+      </view>
     </view>
   </van-tab>
   <van-tab title="失物"></van-tab>

@@ -69,7 +69,7 @@ page {
   background-color: #ffffff;
   border-radius: 25rpx;
   animation-name: example;
-  animation-duration: 1s;
+  animation-duration: 2s;
 }
 
 .waterfall-item .item {
@@ -211,17 +211,3 @@ page {
   width: 100rpx;
 }
 
-
-/* 动画 */
-@keyframes example {
-  from {
-    transform: scale(0, 0);
-
-  }
-
-
-  to {
-    transform: scale(1, 1);
-
-  }
-}

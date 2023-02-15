@@ -1,11 +1,5 @@
+let app = getApp()
 // 失物照片发布时间的字符串化
-const app = getApp()
-
-
-
-
-
-
 function getTime(date) {
   //dateTimeStamp是一个时间毫秒，注意时间戳是秒的形式，在这个毫秒的基础上除以1000，就是十位数的时间戳。13位数的都是时间毫秒。
   var dateTimeStamp = Date.parse(date)
@@ -572,11 +566,11 @@ function getLocation() {
   return new Promise(resolve => {
     wx.getSetting.call(this, ({
       success: (res) => {
-        if (res.authSetting['scope.userLocation'] == false) {
+        if (res.authSetting['scope.userLocation'] === true) {
+          resolve(true)
+
+        } else if (res.authSetting['scope.userLocation'] === false) {
           // 用户未授权位置信息 显示窗口去设置
-          this.setData({
-            sign_code: []
-          })
           wx.showModal({
             title: '温馨提示',
             content: '检测当前未授权获取位置信息,是否前往授权页面',
@@ -591,9 +585,9 @@ function getLocation() {
             }
           })
           resolve(false)
+
         } else {
-          console.log("授权了")
-          resolve(true)
+          resolve("undefined")
         }
       }
     }))
@@ -601,8 +595,195 @@ function getLocation() {
 
 }
 
-function response_handle(res){
+// 底部tabBar切换
+function tabBar_change(event) {
+  switch (event.detail) {
+    case 0:
+      wx.switchTab({
+        url: '/pages/inde2/index',
+      })
+      break;
+    case 2:
+      wx.switchTab({
+        url: '/pages/msg/index',
+      })
+      break;
+    case 3:
+      wx.switchTab({
+        url: '/pages/self/index',
+      })
+      break;
+    default:
+      break;
+  }
+
+
 }
+
+// 获取服务时,查看当前账户的认证状态
+function get_get_userBind_status() {
+  switch (app.globalData.userInfo.account_status) {
+    case 1105:
+      wx.showModal({
+        title: "通知",
+        content: "检测到您未完成在校认证,请完成在校认证",
+        success: function (res) {
+          if (res.cancel == true) {
+            // 用户点击了取消,重新开启定时轮询 每5分钟去询问是否去认证
+          } else if (res.confirm == true) {
+            wx.navigateTo({
+              url: '/pages/bind/index',
+            })
+          }
+        }
+      })
+      return false
+    case 1101:
+      // code:1101=》 审核状态
+      wx.showModal({
+        title: "通知",
+        content: "您的在校认证正在处于审核状态,请耐心等待审核通过",
+      })
+      return false
+    case 1103:
+      // code:1103=》 被ban了
+      wx.showModal({
+        title: "通知",
+        content: "你的账户已被封禁,暂停对你的服务",
+      })
+      return false
+    case 1104:
+      // code:1104=》 审核拒绝
+      wx.showModal({
+        title: "通知",
+        content: "您的在校认证审核被拒绝,请尝试重新认证",
+      })
+      return false
+    case 1102:
+      return true
+    case null:
+      wx.showModal({
+        title: "通知",
+        content: "检测到您没有微信登录,请完成完成登录",
+      })
+      return false
+  }
+}
+
+// 获取我的发布数据
+function get_selfPost_data(type, page) {
+  function format_condiction(conditction) {
+    switch (conditction) {
+      case 3321:
+        return "全新";
+      case 3322:
+        return "几乎全新";
+      case 3323:
+        return "轻微使用痕迹";
+      case 3324:
+        return "明显使用痕迹";
+      default:
+        return "未知";
+    }
+  }
+
+  function format_time(date) {
+    let time = new Date(Date.parse(date))
+    return (time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate())
+  }
+
+  function format_status(status, publishType) {
+    switch (status) {
+      case 3311:
+        return ["审核中","#07c160"]
+      case 3312:
+        return ["已驳回","#ee0a24"]
+      case 3313:
+        if (publishType == 3341) return ["出售中","#ffd23c"]
+        return ["收购中","#ffd23c"]
+      case 3314:
+        return ["已完成","#07c160"]
+      case 3315:
+        return ["已失效","#ff976a"]
+    }
+
+
+  }
+
+  function render() {
+    switch (type) {
+      case 0:
+        this.setData({
+          second_hand_data: current_type
+        })
+        current_type = this.data.second_hand_data
+        break
+    }
+  }
+
+
+  // type:要查询的发布类型=>0:闲置 1:失物 2:墙
+  // page:页数
+  let current_type
+  switch (type) {
+    case 0:
+      current_type = this.data.second_hand_data
+      break
+  }
+  wx.request.call(this, { 
+    url: app.globalData.url + "/fleamarket/goods/list",
+    data: {
+      token: wx.getStorageSync('token'),
+      size: 6,
+      currentPage: page,
+      stdId: app.globalData.bind_userInfo.stdId
+    },
+    success: (res) => {
+      if (res.statusCode == 200) {
+        if (res.data.code == 200) {
+          // 更新数据
+          current_type.hasNext = res.data.data.hasNext
+          current_type.currentPage = res.data.data.currentPage
+          // 渲染
+          for (let index in res.data.data.fleaMarketMain) {
+            // 格式化日期和状态
+            let current_data = res.data.data.fleaMarketMain[index]
+            current_data.fleaMarketMain.createTime = format_time(current_data.fleaMarketMain.createTime)
+            // 品质格式化
+            current_data.fleaMarketMain.goodsCondition = format_condiction(current_data.fleaMarketMain.goodsCondition)
+            // 状态格式化
+            let format_data=format_status(current_data.fleaMarketMain.status, current_data.fleaMarketMain.publishType)
+            current_data.fleaMarketMain.status = format_data[0]
+            current_data.fleaMarketMain.status_color =format_data[1]
+            current_type.fleaMarketMain.push(current_data)
+          }
+          render.call(this)
+        } else {
+          wx.showToast({
+            title: '暂无数据',
+            icon: "error"
+          })
+        }
+      } else {
+        wx.showToast({
+          title: '服务器故障',
+          icon: "error"
+        })
+      }
+    },
+    fail: () => {
+      wx.showToast({
+        title: '服务器故障',
+        icon: "error"
+      })
+    }
+  })
+
+
+
+}
+
+
 
 
 module.exports = {
@@ -615,5 +796,8 @@ module.exports = {
   get_secondHand_data: get_secondHand_data,
   secondHandPost_form_limit: secondHandPost_form_limit,
   get_loseOrFind_data2: get_loseOrFind_data2,
-  get_location: getLocation
+  get_location: getLocation,
+  tabBar_change: tabBar_change,
+  get_get_userBind_status: get_get_userBind_status,
+  get_selfPost_data: get_selfPost_data
 }

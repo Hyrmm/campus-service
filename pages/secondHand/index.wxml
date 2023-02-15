@@ -11,7 +11,7 @@
     </view>
   </view>
 </view>
-<van-tabs swipeable="{{true}} " sticky active="{{current_tab_index}}" bind:change="tabs_change" color="#ffd23c" ellipsis="{{false}}" offsetTop="{{tabs_offset_top}}">
+<van-tabs swipeable="{{true}} " sticky active="{{current_tab_index}}" bind:change="tabs_change" color="#ffd23c" ellipsis="{{false}}" offsetTop="{{tabs_offset_top}}" animated>
   <van-tab title="{{item.goodsTag}}" wx:for="{{goods_data}}">
     <view class="waterfall_warper">
       <view class="left">
@@ -20,7 +20,7 @@
             <image mode="cover" src="{{item.imageUrlList[0]}}" style="height:{{item.fleaMarketMain.height}}px;"></image>
           </view>
           <view class="trade_title item">
-            <view class="trade">{{item.fleaMarketMain.publishType==3341?'出售':'收购'}}</view>
+            <view class="trade" style="{{item.fleaMarketMain.publishType==3341?'background-color:#ffd23c':''}}">{{item.fleaMarketMain.publishType==3341?'出售':'收购'}}</view>
             <view class="title">{{item.fleaMarketMain.title}}</view>
           </view>
           <view class="tag item">
@@ -49,7 +49,7 @@
             <image mode="cover" src="{{item.imageUrlList[0]}}" style="height:{{item.fleaMarketMain.height}}px;"></image>
           </view>
           <view class="trade_title item">
-            <view class="trade">{{item.fleaMarketMain.publishType==3341?'出售':'收购'}}</view>
+            <view class="trade" style="{{item.fleaMarketMain.publishType==3341?'background-color:#ffd23c':''}}">{{item.fleaMarketMain.publishType==3341?'出售':'收购'}}</view>
             <view class="title">{{item.fleaMarketMain.title}}</view>
           </view>
           <view class="tag item">

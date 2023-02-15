@@ -2,7 +2,7 @@
 <view class="container">
   <view class="head">
     <view class="title">
-      <view class="title-1">早上好,程曜</view>
+      <view class="title-1">早上好,{{bind_userInfo}}</view>
       <view class="title-2">风和日丽出去走走</view>
     </view>
     <view class="weather">
@@ -10,8 +10,8 @@
     </view>
   </view>
   <view class="sign_course">
-    <image mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/classify/sign.png"></image>
-    <image mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/classify/course.png"></image>
+    <image data-type="sign" bindtap="nav_to" mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/classify/sign.png"></image>
+    <image data-type="course" bindtap="nav_to" mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/classify/course.png"></image>
   </view>
   <view class="swiper">
     <text class="title">动态</text>
@@ -34,9 +34,7 @@
   <view class="classify">
     <view class="title">校园生活</view>
     <scroll-view scroll-x="true" style="white-space: nowrap;">
-
-
-      <view class="classify-cell" style="background-image: linear-gradient(135deg, #ff6f52 0%, #ffa775 100%);">
+      <view data-type="secondHand" bindtap="nav_to" class="classify-cell" style="background-image: linear-gradient(135deg, #ff6f52 0%, #ffa775 100%);">
         <view class="text">
           <view class="title">闲置市场</view>
           <view class="under_line"></view>
@@ -46,7 +44,7 @@
         <view class="cicle1"></view>
         <view class="cicle2"></view>
       </view>
-      <view class="classify-cell" style="background-image: linear-gradient(135deg, #906bff 0%, #ba89ff 100%);">
+      <view data-type="loseFind" bindtap="nav_to" class="classify-cell" style="background-image: linear-gradient(135deg, #906bff 0%, #ba89ff 100%);">
         <view class="text">
           <view class="title">失物招领</view>
           <view class="under_line"></view>
@@ -72,8 +70,8 @@
   <view style="height: 200rpx;"></view>
 </view>
 
-
-
+<!-- 授权登录消息框 -->
+<van-dialog show="{{getUserProfile_dialog_show}}" title="微信登录" message="检测到当前未登录,为了提供服务,申请微信一键登录" bind:confirm="getUserProfile" theme="round-button" />
 <!-- 底部tarbar -->
 <van-tabbar active="{{ tab_bar_index }}" bind:change="tab_bar_change" active-color="#ffd23c" inactive-color="#000">
   <van-tabbar-item icon="wap-home-o">首页</van-tabbar-item>

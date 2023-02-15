@@ -163,6 +163,14 @@ Page({
               delta: 0,
             })
           }, 1500)
+        },
+        fail: () => {
+          wx.showToast({
+            title: '服务器故障',
+          })
+          this.setData({
+            is_post_cilcked: true
+          })
         }
       })
     } else {
@@ -170,6 +178,9 @@ Page({
       this.setData({
         form_testing_show: true,
         form_testing_msg: res[1]
+      })
+      this.setData({
+        is_post_cilcked: true
       })
     }
 

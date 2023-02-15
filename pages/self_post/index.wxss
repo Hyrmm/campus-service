@@ -2,32 +2,126 @@
 .van-tabs__line {
   background-color: #ffd23c !important;
 }
-.van-tab{
+
+.van-tab {
   font-size: 35rpx !important;
   color: gray;
 }
+
 .van-tab--active {
   font-weight: bolder !important;
   color: #000 !important;
 }
+
 /* 通用 */
-.container{
+.container {
+  width: 95%;
+  margin: 0 auto;
   background-color: #f6f6f6;
   height: 100vh;
   padding: 20rpx 0;
 }
-.cell{
-  width: 95%;
-  height: 300rpx;
+
+.cell {
+  padding: 20rpx 40rpx;
   margin: 20rpx auto;
   background-color: #fff;
   border-radius: 25rpx;
+  position: relative;
+  overflow: hidden;
+  animation-name: example;
+  animation-duration: 2s;
 }
+
+.cell-button {
+  width: 90%;
+  margin: 25rpx auto;
+  margin-bottom: 0;
+  text-align: center;
+  border-radius: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #ffd23c;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 30rpx;
+  letter-spacing: 30rpx;
+}
+
+.cell-item {
+  display: flex;
+}
+
+.cell-item .image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.cell-item .image image {
+  border-radius: 20rpx;
+}
+
+.cell-item .title_time {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20rpx;
+  white-space: nowrap;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.cell-item .title_time .title {
+
+  font-weight: bolder;
+  font-size: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cell-item .title_time .time {
+  font-size: 24rpx;
+  color: rgba(000, 000, 000, .4);
+  flex: .7;
+}
+
+.cell-item .price {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+  font-size: 35rpx;
+  font-weight: bolder;
+  color: red;
+}
+
+.cell-item .tag {
+  width: 180rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 20rpx;
+  left: -48rpx;
+  transform: rotate(-45deg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  font-weight: bolder;
+}
+
 /* 分类闲置市场 */
 
 .status {
-  margin: 20rpx 0;
+  padding: 40rpx 0;
   display: flex;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+  background-color: #fff;
 }
 
 .status .status-item {
@@ -40,4 +134,13 @@
   line-height: 70rpx;
   font-size: 25rpx;
   color: rgba(000, 000, 000, 0.6);
+}
+
+
+
+/*  */
+page {
+  display: flex;
+  flex-direction: column;
+  background-color: #f6f6f6;
 }

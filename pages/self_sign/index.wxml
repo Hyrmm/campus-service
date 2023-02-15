@@ -10,18 +10,18 @@
   <image style="width:100%;" mode="widthFix" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/sign_bg.png"></image>
 </view>
 <view class="container">
-  <view class="create_sign" bindtap="navTo_createSign">
+  <view class="create_sign" bindtap="{{createSign_isClicked?'':'navTo_createSign'}}">
     <view class="icon">
       <van-icon name="add-square" />
     </view>
     <view class="title">创建签到</view>
     <view class="arrow">></view>
   </view>
-  <view class="start_sign" bindtap="navTo_startSign">
+  <view class="start_sign" bindtap="{{startSign_isClicked?'':'navTo_startSign'}}">
     <view class="icon">
       <van-icon name="todo-list" />
     </view>
-    <view class="title" >开始签到</view>
+    <view class="title">开始签到</view>
     <view class="arrow">></view>
   </view>
 </view>

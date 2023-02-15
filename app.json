@@ -1,7 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
+    "pages/inde2/index",
     "pages/secondHand/index",
     "pages/secondHandPost/index",
     "pages/msg/index",
@@ -13,8 +12,6 @@
     "pages/secondHandDetails/index",
     "pages/self_post/index",
     "pages/self_sign/index",
-    "pages/self_sign_detail/index",
-    "pages/inde2/index",
     "pages/sign_start/index",
     "pages/sign_create/index"
   ],
@@ -70,7 +67,7 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/inde2/index",
         "text": "首页"
       },
       {

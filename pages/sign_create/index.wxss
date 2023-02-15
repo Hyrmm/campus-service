@@ -1,15 +1,22 @@
+page {
+  display: flex;
+  flex-direction: column;
+}
+
 /* 倒计时 */
 .container-clock {
   margin: 0 auto;
   margin-top: 40rpx;
   display: flex;
   position: relative;
+
 }
 
 .clock {
   display: flex;
   margin: 0 auto;
   position: relative;
+
 }
 
 .warper-right,
@@ -40,15 +47,16 @@
   border-right: #6579FF 80rpx solid;
   border-radius: 50%;
   position: absolute;
+
   /* background-color: #F9F8FE; */
 }
 
 .right {
   transform: rotate(225deg);
   animation-name: right;
-  animation-duration: 300s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
   top: 0;
   right: 0;
 }
@@ -56,9 +64,9 @@
 .left {
   transform: rotate(45deg);
   animation-name: left;
-  animation-duration: 300s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
   top: 0;
   left: 0;
 }
@@ -86,6 +94,19 @@
   }
 }
 
+/* 倒计时数字 */
+.count_down {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 30rpx;
+  font-weight: bolder;
+}
+
+.van-count-down {
+  color: #6579FF !important;
+  font-size: 45rpx !important;
+}
 
 /* tips */
 .tips {
@@ -112,17 +133,127 @@
   padding: 40rpx 90rpx;
 
 }
-.teacher_button{
+
+.teacher_button {
   background-color: #657AFF;
   color: #fff;
 }
-.planner_button{
+
+.planner_button {
   background-color: #F9F8FE;
 }
-.button .title{
+
+.button .title {
   font-size: 30rpx;
 }
-.button .comment{
+
+.button .comment {
   font-size: 50rpx;
   font-weight: bolder;
-} 
+}
+
+/* 统计结果老师 */
+.list-container-teacher {
+  width: 90%;
+  margin: 80rpx auto;
+}
+
+.list-cell {
+  /* background-color: rgba(249, 248, 254, .5); */
+  background-color: #fff;
+  border-radius: 30rpx;
+  box-shadow: 0 6rpx 10rpx 0 rgba(14, 31, 53, 0.12);
+  box-shadow: 0 12rpx 18rpx 0 rgba(14, 31, 53, 0.2);
+  box-shadow: 0 20rpx 40rpx -1rpx rgba(14, 31, 53, 0.12);
+  padding: 40rpx 60rpx;
+  margin-bottom: 80rpx;
+}
+
+.list-cell .class {
+  font-weight: bolder;
+}
+
+.list-cell .sign_amount {
+  color: #D2D7DC;
+  font-size: 25rpx;
+  margin: 15rpx 0;
+}
+
+.list-cell .list {
+  display: flex;
+  border-bottom: #6579FF 5rpx solid;
+  margin-bottom: 30rpx;
+}
+
+.list-cell .list .avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.list-cell .list .name_class {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0 15rpx;
+}
+
+.list-cell .list .name_class .name {
+  font-weight: bolder;
+  font-size: 28rpx;
+  letter-spacing: 12rpx;
+}
+
+.list-cell .list .name_class .class {
+  color: #D2D7DC;
+  font-size: 22rpx;
+}
+
+/* 统计结果策划人 */
+.list-container-planner {
+  width: 90%;
+  margin: 80rpx auto;
+}
+
+.list-container-planner .sign_amount {
+  color: #D2D7DC;
+  font-size: 28rpx;
+  margin: 15rpx 0;
+}
+
+.list-container-planner .cell {
+  background-color: #fff;
+  border-radius: 15rpx;
+  box-shadow: 0 6rpx 10rpx 0 rgba(14, 31, 53, 0.12);
+  box-shadow: 0 12rpx 18rpx 0 rgba(14, 31, 53, 0.2);
+  box-shadow: 0 20rpx 40rpx -1rpx rgba(14, 31, 53, 0.12);
+  display: flex;
+  padding: 15rpx 15rpx;
+  margin-bottom: 20rpx;
+}
+
+.cell .avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cell .name_class {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10rpx;
+
+}
+
+.name_class .name {
+  font-weight: bolder;
+  font-size: 28rpx;
+  letter-spacing: 12rpx;
+}
+
+.name_class .class {
+  color: #D2D7DC;
+  font-size: 22rpx;
+}

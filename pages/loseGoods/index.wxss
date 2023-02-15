@@ -128,20 +128,9 @@
   padding-top: 20rpx;
   /* 这里 */
   animation-name: example;
-  animation-duration: 1s;
+  animation-duration: 2s;
 }
-@keyframes example {
-  from {
-    transform: scale(0, 0);
 
-  }
-
-
-  to {
-    transform: scale(1, 1);
-
-  }
-}
 
 
 .waterfall_item .item_container {

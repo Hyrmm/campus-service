@@ -72,11 +72,27 @@ Page({
     })
   },
   lose_goods_post(event) {
-    wx.navigateTo({
+    wx.navigateTo.call(this, {
       url: '/pages/loseGoodsPost/index',
-      success: function (res) {
+      success: (res) => {
         res.eventChannel.emit('current_type_index', {
           index: event.currentTarget.id
+        })
+        res.eventChannel.on("data", (data) => {
+          if (data == "3206") {
+            this.setData({
+              ["loseOrFind_data.lose.render_data.left.data"]: [],
+              ["loseOrFind_data.lose.render_data.right.data"]: []
+              }
+
+            )
+          } else {
+            this.setData({
+              ["loseOrFind_data.find.render_data.left.data"]: [],
+              ["loseOrFind_data.find.render_data.right.data"]: []
+            })
+          }
+          moudle.get_loseOrFind_data2.call(this, data, 1)
         })
       }
     })
@@ -128,5 +144,5 @@ Page({
     // 初始化tabs当前index和是否为第一次切换
     current_tabs_index = 0
     first_tab = true
-  }
+  },
 })

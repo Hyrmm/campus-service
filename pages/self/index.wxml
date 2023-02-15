@@ -16,7 +16,6 @@
         </view>
       </van-cell>
       <van-cell title="我的发布" size="large" icon="orders-o" is-link url="/pages/self_post/index"/>
-      <van-cell title="面对面签到" size="large" icon="orders-o" is-link url="/pages/self_sign/index"/>
     </van-cell-group>
 
   </view>

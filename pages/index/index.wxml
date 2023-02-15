@@ -45,7 +45,7 @@
 <van-dialog width="670rpx" title="选择学校" use-slot show="{{ local_change_show }}" show-cancel-button bind:confirm="local_school_confirm">
   <van-picker columns="{{ local_school }}" bind:change="local_school_onChange" />
 </van-dialog>
-<!-- 授权登录消息框 -->
+
 <van-dialog show="{{getUserProfile_dialog_show}}" title="微信登录" message="检测到当前未登录,为了提供服务,申请微信一键登录" bind:confirm="getUserProfile" theme="round-button" />
 <!-- 底部tarbar -->
 <van-tabbar active="{{ tab_bar_index }}" bind:change="tab_bar_change" active-color="#ffd23c" inactive-color="#000">
