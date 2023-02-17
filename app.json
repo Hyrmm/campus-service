@@ -1,0 +1,84 @@
+{
+  "pages": [
+    "pages/inde2/index",
+    "pages/secondHand/index",
+    "pages/secondHandPost/index",
+    "pages/msg/index",
+    "pages/self/index",
+    "pages/bind/index",
+    "pages/loseGoods/index",
+    "pages/loseGoodsPost/index",
+    "pages/loseGoodsDetails/index",
+    "pages/secondHandDetails/index",
+    "pages/self_post/index",
+    "pages/self_sign/index",
+    "pages/sign_start/index",
+    "pages/sign_create/index"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于定位"
+    }
+  },
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "校园服务",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#CC6666"
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-overlay": "@vant/weapp/overlay/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-count-down": "@vant/weapp/count-down/index"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/inde2/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/msg/index",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/self/index",
+        "text": "我的"
+      }
+    ],
+    "custom": true
+  }
+}

@@ -1,0 +1,99 @@
+<van-nav-bar leftArrow bind:click-left="navBack" border="{{false}}" fixed="{{true}}" id="nav" leftText="返回" placeholder="{{true}}" title="闲置详情" zIndex="{{2}}"></van-nav-bar>
+<view class="container">
+  <view class="cell">
+    <view class="user_card">
+      <view class="avatar">
+        <image style="height: 80rpx;width: 80rpx;border-radius: 40rpx;" src="{{fleaMarketMain.avatar}}"></image>
+      </view>
+      <view class="nickName_time">
+        <view class="nickName">{{fleaMarketMain.nickname}}</view>
+        <view class="time">发布于{{fleaMarketMain.createTime}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="cell">
+    <view class="content">
+      <view class="price_condiction">
+        <view class="price">￥{{fleaMarketMain.price}}</view>
+        <view class="condicton">{{fleaMarketMain.goodsCondition}}</view>
+      </view>
+      <view class="details">
+        {{fleaMarketMain.content}}
+      </view>
+      <view style="position: relative;margin-bottom:15rpx">
+        <scroll-view bindscroll="bindscroll" class="image" enhanced="true" pagingEnabled="true" scrollX="true" style="height: {{fleaMarketMain.maxHeight}}px;">
+          <image wx:for="{{imageList}}" mode="widthFix" src="{{item.url}}" style="bottom: {{(fleaMarketMain.maxHeight-item.height)/2}}px;"></image >
+        </scroll-view>
+        <view style="text-align: center;  font-size: 25rpx; color: #ffffff; width: 50rpx;height: 40rpx;line-height: 40rpx; border-radius: 15rpx; display: inline-block;position:absolute;top: 10rpx;right: 10rpx; background-color:rgba(0, 0, 0, 0.4)" wx:if="{{img_list.length!=0}}">{{scroll_index}}/{{imageList.length}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="cell">
+    <view class="comments">
+      <view class="comment" wx:for="{{comments.commentList}}" wx:key="key">
+        <view class="avatar">
+          <image src="{{item.oneComment.fromAvatar}}" style="width: 80rpx;height: 80rpx; border-radius: 40rpx;"></image>
+        </view>
+        <view class="nick_content">
+          <view class="nick" style="font-size:20rpx; font-weight: lighter;">{{item.oneComment.fromNickname}}</view>
+          <view class="content" style="font-size: 26rpx;">{{item.oneComment.content}}</view>
+          <view>
+            <text bindtap="secondComments_tap" data-index="{{index}}" style="font-size: 20rpx;font-weight:lighter;color: #000000;">{{item.oneComment.createTime}} 回复</text>
+          </view>
+          <block wx:if="{{!item.oneComment.isOpenSecondComment}}">
+            <view bindtap="openSecondComment" data-index="{{index}}" style="text-align: left;color: gainsboro; font-size: 22rpx;" wx:if="{{item.twoCommentList.length!=0}}">展开{{item.twoCommentList.length}}条回复 <van-icon name="arrow-down"></van-icon>
+            </view>
+          </block>
+          <view class="second_comments" wx:else>
+            <view class="second_comment" wx:for="{{item.twoCommentList}}" wx:key="key">
+              <view class="avatar">
+                <image src="{{item.fromAvatar}}" style="width: 60rpx;height: 60rpx; border-radius: 30rpx;"></image>
+              </view>
+              <view class="nick_content">
+                <view class="nick" style="font-size:18rpx; font-weight: lighter;">{{item.fromNickname}}</view>
+                <view class="content" style="font-size: 22rpx;">{{item.content}}</view>
+                <view>
+                  <text style="font-size: 18rpx;font-weight:lighter;color: #000000;">{{item.createTime}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view bindtap="nextCommentPage" style="text-align: center;color: gainsboro; font-size: 30rpx;" wx:if="{{comments.hasNext}}"> 查看更多 <van-icon name="arrow-down"></van-icon>
+      </view>
+      <view style="text-align: center;font-size:26rpx;color: gainsboro; padding: 20rpx;" wx:if="{{!comments.firstHasData}}">暂无留言,来抢沙发-。-</view>
+    </view>
+  </view>
+  <view style="height: 300rpx;"></view>
+</view>
+
+
+
+
+
+
+
+
+
+
+<view class="col">
+  <view class="block icon-cell">
+    <view class="icon-cell-item">
+      <van-icon class="icon" name="share-o" size="40rpx"></van-icon>
+      <view class="title">分享</view>
+    </view>
+    <view class="icon-cell-item">
+      <van-icon class="icon" name="warning-o" size="40rpx"></van-icon>
+      <view class="title">举报</view>
+    </view>
+    <view bindtap="comments_tap" class="icon-cell-item">
+      <van-icon class="icon" name="more-o" size="40rpx"></van-icon>
+      <view class="title">留言</view>
+    </view>
+  </view>
+  <view class="block contact-cell">
+    <van-button round bindtap="contect_me" color="#f6f6f6" customStyle="corlor:#ffffff;height:70rpx;width:150rpx" size="large" type=" primary">出价</van-button>
+    <van-button round bindtap="contect_me" color="#ffd23c" customStyle="corlor:#ffffff;height:70rpx;width:150rpx" size="large" type=" primary">我想要</van-button>
+  </view>
+</view>

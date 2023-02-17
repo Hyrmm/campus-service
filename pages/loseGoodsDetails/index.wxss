@@ -1,0 +1,206 @@
+.container {
+  margin: 30rpx auto;
+  width: 92%;
+}
+
+.cell {
+  background-color: #fff;
+  border-radius: 30rpx;
+  margin-bottom: 40rpx;
+  padding-bottom: 30rpx;
+  padding-top: 50rpx;
+  width: 100%;
+}
+
+.warper {
+  margin: 0 auto;
+  width: 85%;
+}
+
+.title_time {
+  display: flex;
+  justify-content: space-between;
+  line-height: 45rpx;
+}
+
+.title_time .title {
+  font-size: 45rpx;
+  font-weight: bolder;
+}
+
+.address,.title_time .time {
+  color: #9ea0a1;
+  font-size: 25rpx;
+}
+
+.address {
+  margin-top: 25rpx;
+}
+
+.image {
+  margin-top: 30rpx;
+  white-space: nowrap;
+}
+
+.image image {
+  border-radius: 15rpx;
+  position: relative;
+  width: 100%;
+}
+
+.details {
+  font-size: 25rpx;
+  font-weight: lighter;
+  line-height: 37.5rpx;
+  margin-top: 30rpx;
+}
+
+.status {
+  overflow: hidden;
+  text-align: right;
+}
+
+.status view {
+  background-color: #ffd23c;
+  border-radius: 12rpx;
+  float: right;
+  font-size: 25rpx;
+  font-weight: bolder;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  width: 150rpx;
+}
+
+.user_info_card,.user_info_card .name_group {
+  display: flex;
+}
+
+.user_info_card .name_group {
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 30rpx;
+}
+
+.user_info_card .name_group .name {
+  font-size: 24rpx;
+  font-weight: bolder;
+}
+
+.user_info_card .name_group .group {
+  font-size: 20rpx;
+  font-weight: lighter;
+}
+
+.comment_post {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment_post .avatar {
+  margin-left: 40rpx;
+}
+
+.comment_post .input,.comment_post .input input {
+  background-color: #f6f6f6;
+  border-radius: 20rpx;
+  margin-right: 40rpx;
+  width: 500rpx;
+}
+
+.comment_post .input input {
+  height: 100%;
+  padding-left: 15rpx;
+}
+
+.comments {
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30rpx;
+}
+
+.comment,.comments {
+  display: flex;
+}
+
+.comment {
+  margin-bottom: 40rpx;
+}
+
+.comment .avatar {
+  margin-left: 40rpx;
+}
+
+.comment .nick_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+}
+
+.comment .nick_content view {
+  margin-bottom: 12rpx;
+}
+
+.second_comments .second_comment {
+  display: flex;
+}
+
+.second_comment .avatar {
+  margin-left: 0;
+}
+
+.second_comment .nick_content {
+  margin-left: 15rpx;
+}
+
+.second_comment .nick_content view {
+  margin-bottom: 8rpx;
+}
+
+.col {
+  background: #fff;
+  border-radius: 30rpx;
+  bottom: 0;
+  display: flex;
+  margin-bottom: 0;
+  overflow: hidden;
+  padding-bottom: 60rpx;
+  padding-top: 30rpx;
+  position: fixed;
+  width: 100%;
+}
+
+.col .block {
+  flex: 1;
+}
+
+.col .icon-cell {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.col .icon-cell .icon-cell-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.col .icon-cell .icon-cell-item .title {
+  font-size: 24rpx;
+}
+
+.col .contact-cell {
+  justify-content: space-around;
+}
+
+.col .contact-cell,page {
+  display: flex;
+}
+
+page {
+  background: #f6f6f6;
+  flex-direction: column;
+  justify-content: flex-start;
+}

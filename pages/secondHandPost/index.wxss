@@ -1,0 +1,103 @@
+/* 通用 */
+.container {
+  width: 90%;
+  margin: 20rpx auto;
+}
+
+.popup-container {
+  width: 100%;
+}
+
+.cell {
+  margin-bottom: 50rpx;
+}
+
+.cell-item {
+  margin-top: 15rpx;
+}
+
+page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* cell1 */
+.post_button {
+  text-align: right;
+}
+
+.post_button text {
+  display: inline-block;
+  height: 55rpx;
+  line-height: 55rpx;
+  padding: 0 25rpx;
+  font-size: 24rpx;
+  border-radius: 20rpx;
+  background-color: #ffd23c;
+}
+
+.post_button .post {}
+
+.post_button .save {
+  margin-right: 30rpx;
+  background-color: #ffffff;
+  border: #f6f6f6 1px solid;
+}
+
+/* cell2 */
+.textarea textarea {
+  font-size: 28rpx;
+  width: 100%;
+}
+
+/* 上传图片预览图组件样式覆盖*/
+.van-uploader__upload {
+  border-radius: 25rpx;
+  background-color: #f6f6f6 !important;
+}
+
+.van-uploader__preview-image {
+  border-radius: 25rpx;
+}
+
+/* van-cell样式覆盖 */
+.van-cell {
+  padding: 20rpx 0 !important;
+}
+
+.van-hairline--top-bottom:after {
+  border: 0 !important;
+}
+
+/* goods_detail */
+.popup-cell {
+  display: flex;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
+
+.type .type-title {
+  margin-right: 20rpx;
+  font-weight: bolder;
+  white-space: nowrap;
+}
+
+.type .type-tap {
+  white-space: nowrap;
+  width: 80%;
+  margin: 0 auto;
+  font-weight: lighter;
+}
+
+.type .type-tap van-tag {
+  margin-right: 15rpx;
+}
+
+
+
+.price .van-cell__value {
+  font-weight: bolder;
+  color: red;
+}

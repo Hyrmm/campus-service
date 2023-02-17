@@ -1,0 +1,33 @@
+<van-nav-bar id="nav" title="开始签到" border="{{false}}" left-text="返回" left-arrow bind:click-left="navBack" fixed="{{true}}" z-index="{{2}}" placeholder="{{true}}" />
+  <!-- 签到输码页面 -->
+  <view class="create">
+    <view class="title">输入签到码创建签到，签到人输入同样数字后成功签到，签到码5分钟后过期。</view>
+    <view class="round">
+      <view style="{{sign_code[0]?'background-color: #f6f6f6;':'background-color: gray;'}}">{{sign_code[0]}}</view>
+      <view style="{{sign_code[1]?'background-color: #f6f6f6;':'background-color: gray;'}}">{{sign_code[1]}}</view>
+      <view style="{{sign_code[2]?'background-color: #f6f6f6;':'background-color: gray;'}}">{{sign_code[2]}}</view>
+      <view style="{{sign_code[3]?'background-color: #f6f6f6;':'background-color: gray;'}}">{{sign_code[3]}}</view>
+    </view>
+    <view class="key_borad">
+      <view class="row">
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="1">1</view>
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="2">2</view>
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="3">3</view>
+      </view>
+      <view class="row">
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="4">4</view>
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="5">5</view>
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="6">6</view>
+      </view>
+      <view class="row">
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="7">7</view>
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="8">8</view>
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="9">9</view>
+      </view>
+      <view class="row">
+        <view class="cell" hover-class="click_animate"></view>
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="0">0</view>
+        <view class="cell" bindtap="keyTap" hover-class="click_animate" data-value="delete">x</view>
+      </view>
+    </view>
+  </view>

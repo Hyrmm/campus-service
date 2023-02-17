@@ -1,0 +1,56 @@
+/* pages/self/index.wxss */
+/* 公共样式 */
+.clear {
+  clear: both;
+}
+page{
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* 内部样式 */
+.top-bg {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.self-container {
+  background-color: #f7f8fa;
+  border-radius: 20rpx;
+  position: relative;
+  top: 250rpx;
+  z-index: 3;
+}
+
+
+
+
+
+.avatar-container {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 120rpx;
+  background-color: #ffff;
+  position: relative;
+  top: -80rpx;
+  left: 50rpx;
+}
+
+.avatar-img {
+  width: 222rpx;
+  height: 222rpx;
+  border-radius: 110rpx;
+  position: relative;
+  top: 10rpx;
+  left: 10rpx;
+}
+
+.avatar-name {
+  margin-top: 30rpx;
+  margin-left: 100rpx;
+  font-size: large;
+}

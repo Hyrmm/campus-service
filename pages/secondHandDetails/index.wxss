@@ -1,0 +1,213 @@
+/* pages/secondHandDetails/index.wxss */
+
+
+/* 通用 */
+.container {
+  width: 95%;
+  margin: 15rpx auto;
+}
+
+
+
+.cell {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 用户名片 */
+.user_card {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  padding: 10rpx 0;
+}
+
+.user_card .avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.user_card .nickName_time {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1;
+  margin-left: 15rpx;
+}
+.user_card .nickName_time .nickName{
+  font-size: 24rpx;
+}
+.user_card .nickName_time .time{
+  font-size: 20rpx;
+  font-weight: lighter;
+}
+
+
+
+.content{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
+}
+.content .price_condiction{
+  display: flex;
+  justify-content: space-between;
+  padding: 15rpx 0;
+}
+.content .price_condiction .price{
+    color: red;
+    font-weight: bolder;
+    font-size: 45rpx;
+}
+.content .price_condiction .condicton{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 30rpx;
+  font-style:italic;
+  text-shadow:5rpx 5rpx 10rpx #ffd23c
+}
+.content .details{
+  font-size: 30rpx;
+  color: rgba(000, 000, 000, 0.6);
+  margin-bottom: 15rpx;
+}
+
+
+
+.comment_post {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment_post .avatar {
+  margin-left: 40rpx;
+}
+
+.comment_post .input,.comment_post .input input {
+  background-color: #f6f6f6;
+  border-radius: 20rpx;
+  margin-right: 40rpx;
+  width: 500rpx;
+}
+
+.comment_post .input input {
+  height: 100%;
+  padding-left: 15rpx;
+}
+
+.comments {
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30rpx;
+}
+
+.comment,.comments {
+  display: flex;
+}
+
+.comment {
+  margin-bottom: 40rpx;
+}
+
+.comment .avatar {
+  margin-left: 40rpx;
+}
+
+.comment .nick_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+}
+
+.comment .nick_content view {
+  margin-bottom: 12rpx;
+}
+
+.second_comments .second_comment {
+  display: flex;
+}
+
+.second_comment .avatar {
+  margin-left: 0;
+}
+
+.second_comment .nick_content {
+  margin-left: 15rpx;
+}
+
+.second_comment .nick_content view {
+  margin-bottom: 8rpx;
+}
+
+.image {
+  white-space: nowrap;
+}
+
+.image image {
+  border-radius: 15rpx;
+  position: relative;
+  width: 100%;
+}
+
+
+
+.col {
+  background: #fff;
+  border-radius: 30rpx;
+  bottom: 0;
+  display: flex;
+  margin-bottom: 0;
+  overflow: hidden;
+  padding-bottom: 60rpx;
+  padding-top: 30rpx;
+  position: fixed;
+  width: 100%;
+}
+
+.col .block {
+  flex: 1;
+}
+
+.col .icon-cell {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.col .icon-cell .icon-cell-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.col .icon-cell .icon-cell-item .title {
+  font-size: 24rpx;
+}
+
+.col .contact-cell {
+  justify-content: space-around;
+}
+
+.col .contact-cell {
+  display: flex;
+}
+
+/* 想要按钮样式覆盖 */
+.van-button__text {
+  color: #000000 !important;
+  font-weight: 550 !important;
+}
+
+
+page {
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,36 @@
+<van-nav-bar leftArrow bind:click-left="navBack" border="{{false}}" fixed="{{true}}" id="nav" leftText="返回" placeholder="{{true}}" title="我的发布" zIndex="{{2}}"></van-nav-bar>
+
+<van-tabs active="{{ active }}" bind:change="mainTabsChange">
+  <van-tab title="闲置">
+    <view class="status">
+      <view bindtap="secondTabsChange" data-index="0" class="status-item status_all" style="{{currentSecondTabsIndex==0?'background-color:#ffd23c;':''}}">全部</view>
+      <view bindtap="secondTabsChange" data-index="1" class="status-item status_review" style="{{currentSecondTabsIndex==1?'background-color:#ffd23c;':''}}">审核中</view>
+      <view bindtap="secondTabsChange" data-index="2" class="status-item status_rejected" style="{{currentSecondTabsIndex==2?'background-color:#ffd23c;':''}}">已驳回</view>
+      <view bindtap="secondTabsChange" data-index="3" class="status-item status_finish" style="{{currentSecondTabsIndex==3?'background-color:#ffd23c;':''}}">已发布</view>
+    </view>
+    <view class="container">
+      <view bindtap="get_detail" wx:for="{{second_hand_data.fleaMarketMain}}" class="cell" data-index="{{index}}" data-type="{{currentMainTabsIndex}}">
+        <view class="cell-item">
+          <view class="image">
+            <image mode="scaleToFill" style="width: 250rpx;height: 160rpx;" src="{{item.imageUrlList[0]}}"></image>
+          </view>
+          <view class="title_time">
+            <view class="title">{{item.fleaMarketMain.title}}</view>
+            <view class="time">{{item.fleaMarketMain.createTime}}</view>
+          </view>
+          <view class="price">
+            <view>￥{{item.fleaMarketMain.price}}</view>
+          </view>
+          <view class="tag" style="background-color: {{item.fleaMarketMain.status_color}};">
+            <view>{{item.fleaMarketMain.status}}</view>
+          </view>
+        </view>
+        <view class="cell-button">
+          下架
+        </view>
+      </view>
+    </view>
+  </van-tab>
+  <van-tab title="失物"></van-tab>
+  <van-tab title="墙墙"></van-tab>
+</van-tabs>

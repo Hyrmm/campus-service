@@ -1,0 +1,67 @@
+<!--pages/secondHandPost/index.wxml-->
+<van-nav-bar id="nav" title="闲置发布" border="{{false}}" left-text="返回" left-arrow bind:click-left="navBack" fixed="{{true}}" z-index="{{2}}" placeholder="{{true}}" />
+<view class="container">
+
+  <view class="cell">
+    <view class="textarea cell-item">
+      <textarea value="{{textarea_value}}" bindblur="textarea_blur" name="" id="" cols="40" placeholder="买家都关心入手渠道、成色、转手原因"></textarea>
+    </view>
+    <view class="upload cell-item">
+      <van-uploader max-count="3" deletable="{{true}}" image-fit="aspectFill" file-list="{{ fileList }}" bind:after-read="afterRead" preview-size="300rpx" upload-icon="plus" upload-text="上床图片" bind:delete="delete" />
+    </view>
+  </view>
+  <van-divider />
+  <view class="cell">
+    <!-- 出售/收购 -->
+    <van-cell-group class="goods_detail">
+      <van-cell icon="coupon" title="出售/收购" value="去补充" border="{{ false }}" arrow-direction="down" is-link />
+      <view class="popup-container">
+        <view class="type popup-cell classify">
+          <text class="type-title">类型</text>
+          <scroll-view class="type-tap" scroll-x="true">
+            <van-tag data-index="{{index}}" data-type="type" bindtap="tab_onclick" wx:for="{{goods_detail.type.list}}" color="{{index==goods_detail.type.current_select_index?'#ffd23c':'#f6f6f6'}}" text-color="#000000" round size="large">{{item}}</van-tag>
+          </scroll-view>
+        </view>
+      </view>
+    </van-cell-group>
+    <!-- 分类/成色/渠道 -->
+    <van-cell-group class="goods_detail">
+      <van-cell icon="coupon" title="分类/成色/等" value="去补充" border="{{ false }}" arrow-direction="down" is-link />
+      <view class="popup-container">
+        <!-- 分类 -->
+        <view class="type popup-cell classify">
+          <text class="type-title">分类</text>
+          <scroll-view class="type-tap" scroll-x="true">
+            <van-tag data-index="{{index}}" data-type="classify" bindtap="tab_onclick" wx:for="{{goods_detail.classify.list}}" color="{{index==goods_detail.classify.current_select_index?'#ffd23c':'#f6f6f6'}}" text-color="#000000" round size="large">{{item}}</van-tag>
+          </scroll-view>
+        </view>
+        <!-- 成色 -->
+        <view class="type popup-cell quality">
+          <text class="type-title">成色</text>
+          <scroll-view class="type-tap" scroll-x="true">
+            <van-tag data-index="{{index}}" data-type="quality" bindtap="tab_onclick" wx:for="{{goods_detail.quality.list}}" color="{{index==goods_detail.quality.current_select_index?'#ffd23c':'#f6f6f6'}}" text-color="#000000" round size="large">{{item}}</van-tag>
+          </scroll-view>
+        </view>
+      </view>
+    </van-cell-group>
+    <!-- 价格 -->
+    <van-cell-gruop class="price">
+      <van-cell bind:click="price_OnClick" icon="gold-coin" title="价格" value="￥{{price_value}}" border="{{ false }}" is-link />
+    </van-cell-gruop>
+  </view>
+  <view class="cell">
+    <view class="post_button cell-item">
+      <text class="save">存草稿</text>
+      <text class="post" bindtap="{{is_post_cilcked?'post_confirm':''}}">发布</text>
+    </view>
+  </view>
+</view>
+
+<!-- 隐藏input -->
+<view wx:if="{{input_display}}" style="position: fixed;bottom: {{input_bottom}}px;width: 100%;background-color: #ffffff;padding-top: 30rpx;padding-bottom:30rpx;">
+  <view class="hidden_input" style="width: 90%;margin:0 auto;">
+    <input value="{{input_value}}" focus="{{input_foucs}}" bindfocus="input_getFoucs" bindblur="input_lostFoucs" bindkeyboardheightchange="boardheightchange" adjust-position="{{false}}" type="number" style="padding: 0 40rpx;height: 70rpx;line-height: 60rpx;border-radius: 20rpx; background-color: #f6f6f6;" placeholder="卖多少钱合适呢?emm..." />
+  </view>
+</view>
+<!-- 弹出消息框 -->
+<van-dialog show="{{form_testing_show}}" title="通知" message="{{form_testing_msg}}" bind:confirm="form_testing_confirm" theme="round-button" />

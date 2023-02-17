@@ -1,0 +1,133 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.box-quick-link {
+  width: 92%;
+  height: 300rpx;
+  box-sizing: border-box;
+  margin: 0 auto;
+  border-radius: 20rpx;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 600rpx;
+  height: 800rpx;
+  background-color: #fff;
+  border-radius: 50rpx;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* 首行黄色背景+正式上线 */
+.headBg {
+  background-color: #ffd23c;
+  height: 400rpx;
+  border-bottom-right-radius: 80rpx;
+  border-bottom-left-radius: 80rpx;
+
+}
+
+.headBg .content {
+  background-color: #fff;
+  width: 90%;
+  height: 250rpx;
+  margin: 50rpx auto;
+  border-radius: 60rpx;
+}
+
+/* 轮播图Go */
+.title {
+  width: 100%;
+  height: 300rpx;
+}
+
+.title .swip {
+  box-shadow: 4rpx 4rpx 8rpx rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  height: 280rpx;
+  width: 650rpx;
+  margin-top: 40rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  transform: translateY(0);
+}
+
+.title .swip image {
+  width: 100%;
+}
+
+/* 轮播图Over */
+
+/* 搜索框 */
+.local {
+  display: flex;
+  width: 90%;
+  background-color: #fff;
+  height: 80rpx;
+  margin: 0 auto;
+  margin-top: -40rpx;
+  border-radius: 60rpx;
+  align-content: center;
+}
+
+.local image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.local .img_xy {
+  margin-top: 17rpx;
+  margin-left: 27rpx;
+}
+.local .img_change {
+  margin-top: 13rpx;
+  margin-left: 32rpx;
+}
+
+.local .select-content {
+  width: 70%;
+  margin-top: 20rpx;
+  margin-left: 27rpx;
+  color: #ffd23c;
+}
+
+
+page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #f6f6f6;
+}
+
+.van-dropdown {
+  background-color: aqua;
+}

@@ -1,0 +1,213 @@
+.container {
+  margin: 15rpx auto;
+  width: 90%;
+}
+
+.cell {
+  margin: 20rpx 0;
+}
+
+page {
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #f6f6f6;
+}
+
+.search,
+page {
+  display: flex;
+}
+
+.search {
+  background-color: #ffffff;
+  border-radius: 40rpx;
+  height: 80rpx;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.search .search_input {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.search .search_input input {
+  height: 100%;
+  width: 100%;
+}
+
+.search .search_icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.search .search_icon image {
+  height: 50rpx;
+  width: 50rpx;
+}
+
+
+
+/* 瀑布图 */
+.waterfall_warper {
+  display: flex;
+  width: 100%;
+}
+
+.waterfall_warper .left,
+.waterfall_warper .right {
+  display: inline-block;
+  width: 50%;
+}
+
+.waterfall-item {
+  border-radius: 25rpx;
+  margin: 0 auto;
+  width: 92%;
+  background-color: #ffffff;
+  border-radius: 25rpx;
+  animation-name: example;
+  animation-duration: 1s;
+}
+
+.waterfall-item .item {
+  width: 90%;
+  margin: 15rpx auto;
+}
+
+.waterfall-item .img image {
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+  width: 100%;
+
+}
+
+.waterfall-item .trade_title {
+  display: flex;
+  font-size: 30rpx;
+  font-weight: bolder;
+  height: 50rpx;
+  justify-content: space-between;
+  line-height: 50rpx;
+}
+
+.waterfall-item .trade_title .trade {
+  background-color: #09f;
+  border-radius: 12rpx;
+  color: #fff;
+  display: inline-block;
+  font-size: 27rpx;
+  text-align: center;
+  width: 24%;
+}
+
+.waterfall-item .trade_title .title {
+  margin: 0 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
+}
+
+.waterfall-item .tag {
+  display: flex;
+}
+
+.waterfall-item .tag .classify,
+.waterfall-item .tag .quality {
+  border: 1px solid hsla(0, 100%, 70%, .7);
+  border-radius: 8rpx;
+  color: hsla(0, 100%, 70%, .7);
+  font-size: 22rpx;
+  margin-right: 8rpx;
+  padding: 5rpx;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.waterfall-item .price_view {
+  display: flex;
+  justify-content: space-between;
+}
+
+.waterfall-item .price_view .price {
+  color: red;
+  flex: 1;
+  font-size: 40rpx;
+  font-weight: bolder;
+}
+
+.waterfall-item .price_view .view {
+  color: #9ea0a1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: 24rpx;
+  font-weight: lighter;
+  justify-content: flex-end;
+}
+
+.waterfall-item .user {
+  display: flex;
+  padding-bottom: 20rpx;
+}
+
+
+.waterfall-item .user .avatar image {
+  border-radius: 25rpx;
+  height: 50rpx;
+  width: 50rpx;
+}
+
+.waterfall-item .user .avatar,
+.waterfall-item .user .nickname {
+  color: #9ea0a1;
+  display: flex;
+  flex-direction: column;
+  font-weight: lighter;
+  justify-content: center;
+}
+
+.waterfall-item .user .nickname {
+  color: #9ea0a1;
+  font-weight: lighter;
+  margin: 0 auto;
+  width: 80%;
+}
+
+/* tab样式覆盖 */
+.van-tab--active,
+.van-tabs__wrap {
+  font-weight: bolder !important;
+}
+
+.van-tab--active {
+  font-size: larger !important;
+}
+
+.van-tabs__scroll {
+  background-color: #f6f6f6 !important;
+}
+
+/* 导航样式覆盖 */
+.van-nav-bar {
+  background-color: #f6f6f6 !important;
+}
+
+.post {
+  background-color: #ffd23c;
+  border-radius: 50rpx;
+  bottom: 200rpx;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, .02), 6.7px 6.7px 5.3px rgba(0, 0, 0, .028), 12.5px 12.5px 10px rgba(0, 0, 0, .035), 22.3px 22.3px 17.9px rgba(0, 0, 0, .042), 41.8px 41.8px 33.4px rgba(0, 0, 0, .05), 100px 100px 80px rgba(0, 0, 0, .07);
+  color: #fff;
+  font-size: 50rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: fixed;
+  right: 50rpx;
+  text-align: center;
+  width: 100rpx;
+}
+

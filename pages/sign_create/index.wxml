@@ -1,0 +1,79 @@
+<wxs src="./index.wxs" module="module"></wxs>
+<van-nav-bar id="nav" title="统计签到" border="{{false}}" left-text="返回" left-arrow bind:click-left="navBack" fixed="{{true}}" z-index="{{2}}" placeholder="{{true}}" />
+
+
+<view class="container-clock">
+  <view class="clock">
+    <view class="warper-left">
+      <view class="left" style="{{is_sign_complete==true?'border: 80rpx #6579FF solid;':''}}animation-duration:{{animation_duration}}">
+      </view>
+      {{sign_code[0]}}
+    </view>
+    <view class="warper-right">
+      <view class="right" style="{{is_sign_complete==true?'border: 80rpx #6579FF solid;':''}}animation-duration:{{animation_duration}}">
+      </view>
+      {{sign_code[1]}}
+    </view>
+  </view>
+
+</view>
+
+<block wx:if="{{!is_sign_complete}}">
+  <view class="count_down">
+
+    <van-count-down time="{{ time }}" format="mm:ss" />
+
+  </view>
+  <view class="tips">
+    <van-icon name="question" style="color: #657AFF;" />上方四位数为签到码，下方按钮可提前结束签到
+  </view>
+  <view class="button-warper">
+    <view class="teacher_button button" bindtap="{{sign_complete_isClicked?'':'sign_complete'}}" data-type="0">
+      <view class="title">结束签到</view>
+      <view class="comment">老师</view>
+    </view>
+    <view class="planner_button button" bindtap="{{sign_complete_isClicked?'':'sign_complete'}}" data-type="1">
+      <view class="title">结束签到</view>
+      <view class="comment">策划人</view>
+    </view>
+  </view>
+</block>
+<block wx:else="">
+  <block wx:if="{{sign_data_teacher.length!=0}}">
+    <view class="list-container-teacher">
+      <view wx:for="{{sign_data_teacher}}" class="list-cell">
+        <view class="class">{{item.grade}}{{item.major}}{{item.studentClass}}班</view>
+        <view class="sign_amount">截至目前共统计<text style="color: #6579FF;font-weight: bolder;">{{item.absenceStudent.length}}</text>人未签到</view>
+        <view class="list" wx:for="{{item.absenceStudent}}" wx:for-item="item_this">
+          <view class="avatar">
+            <image mode="widthFix" style="width: 50rpx;" src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/cartoonAvatar/{{module.getRandom()}}.webp" />
+          </view>
+          <view class="name_class">
+            <view class="name">{{item_this}}</view>
+            <view class="class">{{item.grade}}{{item.major}}{{item.studentClass}}班</view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{sign_data_planner.length!=0}}">
+    <view class="list-container-planner">
+      <view class="sign_amount">
+        <van-icon name="info" style="color: #6579ff;" />截至目前共统计<text style="color: #6579FF;font-weight: bolder;">{{sign_data_planner.length}}</text>人完成签到
+      </view>
+      <view class="cell" wx:for="{{sign_data_planner}}">
+        <view class="avatar">
+          <image style="width: 50rpx;height: 50rpx;border-radius: 50%;" src="{{item.avatarUrl}}"></image>
+        </view>
+        <view class="name_class">
+          <view class="name">{{item.stdName}}<text style="letter-spacing:0;font-weight: lighter;">({{item.stdId}})</text></view>
+          <view class="class">{{item.major}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else="">
+    <view style="width: 90%;margin: 120rpx auto;text-align: center;font-weight: bolder;color: #D2D7DC;"><van-icon name="warning" style="color:#6579FF"/>暂无统计结果</view>
+  </block>
+</block>

@@ -1,0 +1,81 @@
+<van-nav-bar leftArrow bind:click-left="navBack" border="{{false}}" fixed="{{true}}" id="nav" leftText="返回" placeholder="{{true}}" title="二手市场" zIndex="{{2}}"></van-nav-bar>
+<view class="container">
+  <view class="cell">
+    <view class="search">
+      <view class="search_icon">
+        <image src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/icon/search.png"></image>
+      </view>
+      <view class="search_input">
+        <input placeholder="搜索" type="text"></input>
+      </view>
+    </view>
+  </view>
+</view>
+<van-tabs swipeable="{{true}} " sticky active="{{current_tab_index}}" bind:change="tabs_change" color="#ffd23c" ellipsis="{{false}}" offsetTop="{{tabs_offset_top}}">
+  <van-tab title="{{item.goodsTag}}" wx:for="{{goods_data}}">
+    <view class="waterfall_warper">
+      <view class="left">
+        <view data-index="{{index}}" data-type="left" bindtap="get_detail" class="waterfall-item" wx:for="{{item.left}}">
+          <view class="img item">
+            <image mode="cover" src="{{item.imageUrlList[0]}}" style="height:{{item.fleaMarketMain.height}}px;"></image>
+          </view>
+          <view class="trade_title item">
+            <view class="trade" style="{{item.fleaMarketMain.publishType==3341?'background-color:#ffd23c':''}}">{{item.fleaMarketMain.publishType==3341?'出售':'收购'}}</view>
+            <view class="title">{{item.fleaMarketMain.title}}</view>
+          </view>
+          <view class="tag item">
+            <view class="classify">{{item.fleaMarketMain.goodsTag}}</view>
+            <view class="quality">{{item.fleaMarketMain.goodsCondition}}</view>
+          </view>
+          <view class="price_view item">
+            <view class="price">
+              <text>￥{{item.fleaMarketMain.price}}</text>
+            </view>
+            <view class="view">
+              <text style="margin-bottom: 8rpx;">{{item.fleaMarketMain.viewNum}}浏览</text>
+            </view>
+          </view>
+          <view class="user item">
+            <view class="avatar">
+              <image src="{{item.fleaMarketMain.avatar}}"></image>
+            </view>
+            <view class="nickname">{{item.fleaMarketMain.nickname}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="right">
+        <view data-index="{{index}}" data-type="right" bindtap="get_detail" class="waterfall-item" wx:for="{{item.right}}">
+          <view class="img item">
+            <image mode="cover" src="{{item.imageUrlList[0]}}" style="height:{{item.fleaMarketMain.height}}px;"></image>
+          </view>
+          <view class="trade_title item">
+            <view class="trade" style="{{item.fleaMarketMain.publishType==3341?'background-color:#ffd23c':''}}">{{item.fleaMarketMain.publishType==3341?'出售':'收购'}}</view>
+            <view class="title">{{item.fleaMarketMain.title}}</view>
+          </view>
+          <view class="tag item">
+            <view class="classify">{{item.fleaMarketMain.goodsTag}}</view>
+            <view class="quality">{{item.fleaMarketMain.goodsCondition}}</view>
+          </view>
+          <view class="price_view item">
+            <view class="price">
+              <text>￥{{item.fleaMarketMain.price}}</text>
+            </view>
+            <view class="view">
+              <text style="margin-bottom: 8rpx;">{{item.fleaMarketMain.viewNum}}浏览</text>
+            </view>
+          </view>
+          <view class="user item">
+            <view class="avatar">
+              <image src="{{item.fleaMarketMain.avatar}}"></image>
+            </view>
+            <view class="nickname">{{item.fleaMarketMain.nickname}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view style="height: 300rpx;"></view>
+  </van-tab>
+</van-tabs>
+<view bindtap="nav_post" class="post">
+  <van-icon name="plus"></van-icon>
+</view>

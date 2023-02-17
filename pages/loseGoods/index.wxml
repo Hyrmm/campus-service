@@ -1,0 +1,137 @@
+<van-nav-bar id="nav" title="失物招领" border="{{false}}" left-text="返回" left-arrow bind:click-left="navBack" fixed="{{true}}" z-index="{{2}}" placeholder="{{true}}" />
+<view class="headBg">
+  <view class="title">
+    <!-- 标题轮播图等 custom-style-->
+    <swiper indicator-dots='true' autoplay='true' interval='3000' duration='1000' circular='true' class="swip">
+      <block wx:for="{{movies}}" wx:for-index="index">
+        <swiper-item>
+          <image src='{{movies[index].url}}' mode='widthFix'></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>
+
+<!-- 搜索框 -->
+<view class="search">
+  <view class="img" bindtap="search">
+    <image src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/icon/search.png"></image>
+  </view>
+  <view class="input">
+    <input type="text" placeholder="搜索" />
+  </view>
+</view>
+<!-- 发布和寻找 -->
+<view class="function">
+  <!-- 失物 -->
+  <view class="release">
+    <!--发布-->
+    <view class="list">
+      <view class="img" bindtap="navigator">
+        <image src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/icon/release.png"></image>
+      </view>
+      <view class="button" bindtap="lose_goods_post" id="lose_post">
+        +发布
+      </view>
+    </view>
+    <view class="font">
+      丢了东西
+    </view>
+  </view>
+  <!-- 寻物 -->
+  <view class="release">
+    <!--寻找-->
+    <view class="list">
+      <view class="img" bindtap="navigator">
+        <image src="https://grab-1301500159.cos.ap-shanghai.myqcloud.com/miniPrograme/icon/search.png"></image>
+      </view>
+      <view class="button" bindtap="lose_goods_post" id="find_post">
+        +发布
+      </view>
+    </view>
+    <view class="font">
+      捡到东西
+    </view>
+  </view>
+</view>
+<!-- 动态栏 -->
+<view class="msg">
+  <van-tabs id="van_tabs" swipeable="{{true}} " sticky bind:change="tabs_change" color="#ffd23c" line-width="65" offset-top="{{tabs_offset_top}}" animated="{{true}}" lazy-render="{{false}}">
+    <van-tab title="丢了东西动态">
+      <view class="waterfall_warper lose">
+        <view class="left">
+          <view wx:for="{{loseOrFind_data.lose.render_data.left.data}}" class="waterfall_item" bindtap="get_details" data-type="lose_left" data-index="{{index}}">
+            <view class="item_container img" id="text">
+              <van-image fit="cover" src="{{item.imgUrl[0]}}" height="{{item.lostFoundMain.height}}" />
+            </view>
+            <view class="item_container title_status">
+              <view class="item_title">{{item.lostFoundMain.goodsType}}</view>
+              <view class="item_status">{{item.lostFoundMain.status}}</view>
+            </view>
+            <view class="item_container location_date">
+              <view class="item_location">
+                <van-icon name="location-o" />{{item.lostFoundMain.address}}
+              </view>
+              <view class="item_date">{{item.lostFoundMain.createTime}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="right">
+          <view wx:for="{{loseOrFind_data.lose.render_data.right.data}}" class="waterfall_item" bindtap="get_details" data-type="lose_right" data-index="{{index}}">
+            <view class="item_container img" id="text">
+              <van-image fit="cover" src="{{item.imgUrl[0]}}" height="{{item.lostFoundMain.height}}" />
+            </view>
+            <view class="item_container title_status">
+              <view class="item_title">{{item.lostFoundMain.goodsType}}</view>
+              <view class="item_status">{{item.lostFoundMain.status}}</view>
+            </view>
+            <view class="item_container location_date">
+              <view class="item_location">
+                <van-icon name="location-o" />{{item.lostFoundMain.address}}
+              </view>
+              <view class="item_date">{{item.lostFoundMain.createTime}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="捡到东西动态">
+      <view class="waterfall_warper find">
+        <view class="left">
+          <view wx:for="{{loseOrFind_data.find.render_data.left.data}}" class="waterfall_item" bindtap="get_details" data-type="find_left" data-index="{{index}}">
+            <view class="item_container img" id="text">
+              <van-image fit="cover" src="{{item.imgUrl[0]}}" height="{{item.lostFoundMain.height}}" />
+            </view>
+            <view class="item_container title_status">
+              <view class="item_title">{{item.lostFoundMain.goodsType}}</view>
+              <view class="item_status">{{item.lostFoundMain.status}}</view>
+            </view>
+            <view class="item_container location_date">
+              <view class="item_location">
+                <van-icon name="location-o" />{{item.lostFoundMain.address}}
+              </view>
+              <view class="item_date">{{item.lostFoundMain.createTime}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="right">
+          <view wx:for="{{loseOrFind_data.find.render_data.right.data}}" class="waterfall_item" bindtap="get_details" data-type="find_right" data-index="{{index}}">
+            <view class="item_container img" id="text">
+              <van-image fit="cover" src="{{item.imgUrl[0]}}" height="{{item.lostFoundMain.height}}" />
+            </view>
+            <view class="item_container title_status">
+              <view class="item_title">{{item.lostFoundMain.goodsType}}</view>
+              <view class="item_status">{{item.lostFoundMain.status}}</view>
+            </view>
+            <view class="item_container location_date">
+              <view class="item_location">
+                <van-icon name="location-o" />{{item.lostFoundMain.address}}
+              </view>
+              <view class="item_date">{{item.lostFoundMain.createTime}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>
