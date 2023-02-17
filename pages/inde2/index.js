@@ -61,25 +61,47 @@ Page({
 
   },
   nav_to(event) {
-    if (event.currentTarget.dataset.type == "sign") {
-      wx.navigateTo({
-        url: '/pages/self_sign/index',
-      })
-    } else if (moudle.get_get_userBind_status()) {
-      switch (event.currentTarget.dataset.type) {
-        case "course":
-          break
-        case "secondHand":
-          wx.navigateTo({
-            url: '/pages/secondHand/index',
-          })
-          break
-        case "loseFind":
-          wx.navigateTo({
-            url: '/pages/loseGoods/index',
-          })
-          break
-      }
+
+
+    switch (event.currentTarget.dataset.type) {
+      case "course":
+        break
+      case "secondHand":
+        wx.navigateTo({
+          url: '/pages/secondHand/index',
+        })
+        break
+      case "loseFind":
+        wx.navigateTo({
+          url: '/pages/loseGoods/index',
+        })
+        break
+      case "sign":
+        wx.navigateTo({
+          url: '/pages/self_sign/index',
+        })
+        break
     }
+    //严格审核机制，审核没通过之前不给跳转
+    // if (event.currentTarget.dataset.type == "sign") {
+    //   wx.navigateTo({
+    //     url: '/pages/self_sign/index',
+    //   })
+    // } else if (moudle.get_get_userBind_status()) {
+    //   switch (event.currentTarget.dataset.type) {
+    //     case "course":
+    //       break
+    //     case "secondHand":
+    //       wx.navigateTo({
+    //         url: '/pages/secondHand/index',
+    //       })
+    //       break
+    //     case "loseFind":
+    //       wx.navigateTo({
+    //         url: '/pages/loseGoods/index',
+    //       })
+    //       break
+    //   }
+    // }
   }
 })
