@@ -72,30 +72,42 @@ Page({
     })
   },
   lose_goods_post(event) {
-    wx.navigateTo.call(this, {
-      url: '/pages/loseGoodsPost/index',
-      success: (res) => {
-        res.eventChannel.emit('current_type_index', {
-          index: event.currentTarget.id
-        })
-        res.eventChannel.on("data", (data) => {
-          if (data == "3206") {
-            this.setData({
-              ["loseOrFind_data.lose.render_data.left.data"]: [],
-              ["loseOrFind_data.lose.render_data.right.data"]: []
-              }
+    if (app.globalData.userInfo.account_status && app.globalData.userInfo.account_status == 1102) {
+      wx.navigateTo.call(this, {
+        url: '/pages/loseGoodsPost/index',
+        success: (res) => {
+          res.eventChannel.emit('current_type_index', {
+            index: event.currentTarget.id
+          })
+          res.eventChannel.on("data", (data) => {
+            if (data == "3206") {
+              this.setData({
+                  ["loseOrFind_data.lose.render_data.left.data"]: [],
+                  ["loseOrFind_data.lose.render_data.right.data"]: []
+                }
 
-            )
-          } else {
-            this.setData({
-              ["loseOrFind_data.find.render_data.left.data"]: [],
-              ["loseOrFind_data.find.render_data.right.data"]: []
-            })
-          }
-          moudle.get_loseOrFind_data2.call(this, data, 1)
-        })
-      }
-    })
+              )
+            } else {
+              this.setData({
+                ["loseOrFind_data.find.render_data.left.data"]: [],
+                ["loseOrFind_data.find.render_data.right.data"]: []
+              })
+            }
+            moudle.get_loseOrFind_data2.call(this, data, 1)
+          })
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '未完成认证或未通过认证，无法发布内容!',
+        success(res) {
+
+        }
+      })
+    }
+
+
   },
   tabs_change(event) {
     this.data.current_tabs_index = event.detail.index

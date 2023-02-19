@@ -142,8 +142,19 @@ Page({
     t = this.data.goods_data;
   },
   nav_post() {
-    wx.navigateTo({
-      url: "/pages/secondHandPost/index"
-    });
+    if (app.globalData.userInfo.account_status && app.globalData.userInfo.account_status == 1102) {
+      wx.navigateTo({
+        url: "/pages/secondHandPost/index"
+      });
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '未完成认证或未通过认证，无法发布内容!',
+        success(res) {
+
+        }
+      })
+    }
+
   }
 })
